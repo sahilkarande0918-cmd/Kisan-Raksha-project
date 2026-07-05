@@ -17,8 +17,21 @@ SYSTEM = (
     "survey under PMFBY section for localized calamity, date, signature block. "
     "Do NOT invent numbers not provided. The 'fsi' value is a financial-stress "
     "index (0-100) computed by an early-warning system — do NOT present it as "
-    "a crop-loss percentage; cite it as 'आर्थिक तणाव निर्देशांक' if at all."
+    "a crop-loss percentage; cite it as 'आर्थिक तणाव निर्देशांक' if at all. "
+    "Use the exact Marathi district spelling given in 'district_mr'. NEVER mix "
+    "Latin/English letters inside Devanagari words — every word must be pure "
+    "Devanagari or pure Latin (e.g. NDVI, PMFBY may stay Latin)."
 )
+
+# correct Marathi spellings for target districts (avoids LLM transliteration errors)
+DISTRICT_MR = {
+    "Amravati": "अमरावती", "Yavatmal": "यवतमाळ", "Akola": "अकोला",
+    "Buldhana": "बुलढाणा", "Washim": "वाशिम", "Wardha": "वर्धा",
+    "Nagpur": "नागपूर", "Chandrapur": "चंद्रपूर",
+    "Chhatrapati Sambhajinagar": "छत्रपती संभाजीनगर", "Jalna": "जालना",
+    "Beed": "बीड", "Latur": "लातूर", "Dharashiv": "धाराशिव",
+    "Nanded": "नांदेड", "Parbhani": "परभणी", "Hingoli": "हिंगोली",
+}
 
 
 def draft_pmfby_claim(farmer_name: str, district: str, crop: str, fsi_result: dict) -> dict:
@@ -34,6 +47,7 @@ def draft_pmfby_claim(farmer_name: str, district: str, crop: str, fsi_result: di
     evidence = {
         "farmer_name": farmer_name or "____________",
         "district": d["name"],
+        "district_mr": DISTRICT_MR.get(d["name"], d["name"]),
         "crop": f"{crop_key} ({crop_mr})",
         "date": date.today().strftime("%d/%m/%Y"),
         "fsi": fsi_result.get("fsi"),

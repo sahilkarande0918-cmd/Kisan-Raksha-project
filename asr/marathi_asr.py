@@ -16,10 +16,11 @@ from mcp_server.tools.common import get_env  # noqa: E402
 def transcribe_groq(audio_bytes: bytes, filename: str = "note.ogg") -> str:
     from groq import Groq
     client = Groq(api_key=get_env("GROQ_API_KEY"))
+    # no forced language: Whisper auto-detects (Marathi, Hindi, ...), so the
+    # agent can reply in whatever language the farmer actually spoke
     resp = client.audio.transcriptions.create(
         file=(filename, audio_bytes),
         model="whisper-large-v3",
-        language="mr",
         response_format="text",
     )
     return resp.strip() if isinstance(resp, str) else str(resp).strip()

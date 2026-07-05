@@ -35,13 +35,26 @@ Rules:
 - If FSI level is CRITICAL: call send_officer_alert, then draft_pmfby_claim
   with the farmer's name (use "____" if unknown).
 - If farmer history shows a known district/crop, use them without re-asking.
-- FINAL reply: simple, warm Marathi (Devanagari), max ~120 words. State the
+- FINAL reply: answer in the SAME language the farmer used (Marathi default;
+  Hindi in Hindi, English in English — always simple and warm), max ~120
+  words. Never mix Latin characters inside Devanagari words. State the
   key numbers (FSI, rainfall deficit, price vs MSP). If an alert was sent or
   a claim drafted, say so clearly. Never promise money; suggest contacting
   the taluka Krishi office. If crisis indicators are severe, include the
   Kisan helpline 1800-233-4000.
 - If a demo/test message says 'demo' or 'चाचणी', pass simulate_crisis=true
   to tools and keep the simulation label visible."""
+
+
+def _detect_language(text: str) -> str:
+    """Heuristic Marathi/Hindi/English detection for reply-language routing."""
+    marathi_markers = ("आहे", "मी ", "माझ", "काय", "करू", "झाल", "होत", "पिक", "शेतकरी आहे", "नाही")
+    hindi_markers = ("है", "हूँ", "हूं", "मैं", "मेरी", "मेरा", "क्या", "करूँ", "करूं", "नहीं", "किसान हूँ")
+    if not any("ऀ" <= ch <= "ॿ" for ch in text):
+        return "English"
+    h = sum(m in text for m in hindi_markers)
+    m = sum(m in text for m in marathi_markers)
+    return "Hindi" if h > m else "Marathi"
 
 
 def _mcp_tools_to_openai(tools) -> list[dict]:
@@ -66,6 +79,7 @@ async def run_agent(user_message: str, phone: str = "unknown") -> dict:
         messages = [
             {"role": "system", "content": SYSTEM},
             {"role": "system", "content": f"Farmer memory (from get_farmer_history): {json.dumps(history, ensure_ascii=False)}"},
+            {"role": "system", "content": f"IMPORTANT: the farmer wrote in {_detect_language(user_message)}. Your FINAL reply MUST be in {_detect_language(user_message)}."},
             {"role": "user", "content": user_message},
         ]
         for _ in range(MAX_TURNS):

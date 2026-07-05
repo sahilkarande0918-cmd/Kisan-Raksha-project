@@ -10,7 +10,7 @@
    "drought_signal": 0.106,
    "source": "Open-Meteo ERA5 archive (open-meteo.com)",
    "cached": false,
-   "cached_at": "2026-07-05T07:05:28+00:00"
+   "cached_at": "2026-07-05T16:24:11+00:00"
   },
   "Latur": {
    "district": "Latur",
@@ -35,7 +35,7 @@
    "ndvi_signal": 0.77,
    "source": "NASA MODIS MOD13Q1 via ORNL Subsets API (modis.ornl.gov)",
    "cached": false,
-   "cached_at": "2026-07-05T07:05:33+00:00"
+   "cached_at": "2026-07-05T16:24:15+00:00"
   },
   "Latur": {
    "district": "Latur",
@@ -54,16 +54,15 @@
    "district": "Amravati",
    "crop": "cotton",
    "commodity": "Cotton",
-   "market_price_rs_qtl": 7100,
+   "market_price_rs_qtl": 8100.0,
    "msp_rs_qtl": 7710,
-   "gap_below_msp_pct": 7.9,
-   "price_signal": 0.198,
-   "markets_sampled": 0,
-   "scope": "seasonal_baseline",
-   "source": "Agmarknet 2025-26 season average (static fallback — no live arrivals)",
+   "gap_below_msp_pct": 0.0,
+   "price_signal": 0.0,
+   "markets_sampled": 4,
+   "scope": "national",
+   "source": "Agmarknet via data.gov.in (Ministry of Agriculture)",
    "cached": false,
-   "fallback_reason": "no live mandi price rows for Cotton",
-   "cached_at": "2026-07-05T07:02:35+00:00"
+   "cached_at": "2026-07-05T16:24:12+00:00"
   },
   "Latur:soybean": {
    "district": "Latur",
@@ -85,7 +84,7 @@
    "district": "Amravati",
    "region": "Vidarbha",
    "crop": "cotton",
-   "fsi": 25.0,
+   "fsi": 20.9,
    "level": "LOW",
    "critical_threshold": 75,
    "signals": {
@@ -95,11 +94,11 @@
      "cached": false
     },
     "price": {
-     "value": 0.198,
-     "gap_below_msp_pct": 7.9,
-     "market_price": 7100,
+     "value": 0.0,
+     "gap_below_msp_pct": 0.0,
+     "market_price": 8100.0,
      "msp": 7710,
-     "cached": true
+     "cached": false
     },
     "ndvi": {
      "value": 0.77,
@@ -110,7 +109,7 @@
    },
    "model": "LightGBM (model/risk_model.pkl)",
    "cached": false,
-   "cached_at": "2026-07-05T07:05:36+00:00"
+   "cached_at": "2026-07-05T16:14:42+00:00"
   },
   "Latur:soybean": {
    "district": "Latur",
