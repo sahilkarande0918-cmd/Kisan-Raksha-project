@@ -1,0 +1,22 @@
+# KisaanRaksha — core dependencies (all free / open-source)
+fastapi
+uvicorn[standard]
+fastmcp
+python-dotenv
+requests
+pandas
+numpy
+scikit-learn
+lightgbm
+fairlearn
+google-genai
+groq
+twilio
+streamlit
+plotly
+joblib
+
+# Optional heavy ASR (AI4Bharat local inference) — install separately if needed:
+# torch
+# transformers
+# soundfile

@@ -1,0 +1,147 @@
+{
+ "weather": {
+  "Amravati": {
+   "district": "Amravati",
+   "region": "Vidarbha",
+   "window_days": 30,
+   "rainfall_mm": 130.5,
+   "baseline_mm": 146.0,
+   "deficit_pct": 10.6,
+   "drought_signal": 0.106,
+   "source": "Open-Meteo ERA5 archive (open-meteo.com)",
+   "cached": false,
+   "cached_at": "2026-07-05T07:05:28+00:00"
+  },
+  "Latur": {
+   "district": "Latur",
+   "region": "Marathwada",
+   "window_days": 30,
+   "rainfall_mm": 57.9,
+   "baseline_mm": 149.1,
+   "deficit_pct": 61.2,
+   "drought_signal": 0.612,
+   "source": "Open-Meteo ERA5 archive (open-meteo.com)",
+   "cached": false,
+   "cached_at": "2026-07-05T07:13:15+00:00"
+  }
+ },
+ "ndvi": {
+  "Amravati": {
+   "district": "Amravati",
+   "latest_ndvi": 0.331,
+   "latest_composite_date": "2026-05-25",
+   "season_mean_ndvi": 0.346,
+   "composites_used": 4,
+   "ndvi_signal": 0.77,
+   "source": "NASA MODIS MOD13Q1 via ORNL Subsets API (modis.ornl.gov)",
+   "cached": false,
+   "cached_at": "2026-07-05T07:05:33+00:00"
+  },
+  "Latur": {
+   "district": "Latur",
+   "latest_ndvi": 0.245,
+   "latest_composite_date": "2026-05-25",
+   "season_mean_ndvi": 0.258,
+   "composites_used": 4,
+   "ndvi_signal": 1.0,
+   "source": "NASA MODIS MOD13Q1 via ORNL Subsets API (modis.ornl.gov)",
+   "cached": false,
+   "cached_at": "2026-07-05T07:13:25+00:00"
+  }
+ },
+ "mandi": {
+  "Amravati:cotton": {
+   "district": "Amravati",
+   "crop": "cotton",
+   "commodity": "Cotton",
+   "market_price_rs_qtl": 7100,
+   "msp_rs_qtl": 7710,
+   "gap_below_msp_pct": 7.9,
+   "price_signal": 0.198,
+   "markets_sampled": 0,
+   "scope": "seasonal_baseline",
+   "source": "Agmarknet 2025-26 season average (static fallback — no live arrivals)",
+   "cached": false,
+   "fallback_reason": "no live mandi price rows for Cotton",
+   "cached_at": "2026-07-05T07:02:35+00:00"
+  },
+  "Latur:soybean": {
+   "district": "Latur",
+   "crop": "soybean",
+   "commodity": "Soyabean",
+   "market_price_rs_qtl": 6520.0,
+   "msp_rs_qtl": 5328,
+   "gap_below_msp_pct": 0.0,
+   "price_signal": 0.0,
+   "markets_sampled": 4,
+   "scope": "national",
+   "source": "Agmarknet via data.gov.in (Ministry of Agriculture)",
+   "cached": false,
+   "cached_at": "2026-07-05T07:13:17+00:00"
+  }
+ },
+ "fsi": {
+  "Amravati:cotton": {
+   "district": "Amravati",
+   "region": "Vidarbha",
+   "crop": "cotton",
+   "fsi": 25.0,
+   "level": "LOW",
+   "critical_threshold": 75,
+   "signals": {
+    "drought": {
+     "value": 0.106,
+     "deficit_pct": 10.6,
+     "cached": false
+    },
+    "price": {
+     "value": 0.198,
+     "gap_below_msp_pct": 7.9,
+     "market_price": 7100,
+     "msp": 7710,
+     "cached": true
+    },
+    "ndvi": {
+     "value": 0.77,
+     "latest_ndvi": 0.331,
+     "cached": false
+    },
+    "repayment_proximity": 0.0
+   },
+   "model": "LightGBM (model/risk_model.pkl)",
+   "cached": false,
+   "cached_at": "2026-07-05T07:05:36+00:00"
+  },
+  "Latur:soybean": {
+   "district": "Latur",
+   "region": "Marathwada",
+   "crop": "soybean",
+   "fsi": 48.4,
+   "level": "MODERATE",
+   "critical_threshold": 75,
+   "signals": {
+    "drought": {
+     "value": 0.612,
+     "deficit_pct": 61.2,
+     "cached": false
+    },
+    "price": {
+     "value": 0.0,
+     "gap_below_msp_pct": 0.0,
+     "market_price": 6520.0,
+     "msp": 5328,
+     "cached": false
+    },
+    "ndvi": {
+     "value": 1.0,
+     "latest_ndvi": 0.245,
+     "cached": false
+    },
+    "repayment_proximity": 0.0
+   },
+   "model": "LightGBM (model/risk_model.pkl)",
+   "cached": false,
+   "cached_at": "2026-07-05T07:13:28+00:00"
+  }
+ }
+}

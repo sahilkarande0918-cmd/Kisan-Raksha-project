@@ -1,0 +1,26 @@
+{
+  "test_mae": 3.75,
+  "test_r2": 0.942,
+  "critical_alert_recall": 0.781,
+  "critical_alert_precision": 0.831,
+  "n_train": 10980,
+  "n_test": 2664,
+  "features": [
+    "drought_signal",
+    "price_signal",
+    "ndvi_signal",
+    "repayment_proximity",
+    "month",
+    "crop_code",
+    "region_code"
+  ],
+  "feature_importance": {
+    "drought_signal": 3249,
+    "price_signal": 3495,
+    "ndvi_signal": 2962,
+    "repayment_proximity": 624,
+    "month": 933,
+    "crop_code": 405,
+    "region_code": 332
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "description": "Kharif crop calendar + MSP for KisaanRaksha target crops. MSP = Minimum Support Price 2025-26 kharif season, Rs per quintal (source: CACP / Ministry of Agriculture press releases). Repayment window = typical crop-loan due period after harvest when financial stress peaks.",
+  "crops": {
+    "cotton": {
+      "name_mr": "कापूस",
+      "msp_rs_per_quintal": 7710,
+      "msp_variety": "medium staple",
+      "sowing": {"start_month": 6, "end_month": 7},
+      "harvest": {"start_month": 10, "end_month": 12},
+      "loan_repayment_window": {"start_month": 1, "end_month": 3},
+      "agmarknet_commodity": "Cotton"
+    },
+    "soybean": {
+      "name_mr": "सोयाबीन",
+      "msp_rs_per_quintal": 5328,
+      "msp_variety": "yellow",
+      "sowing": {"start_month": 6, "end_month": 7},
+      "harvest": {"start_month": 9, "end_month": 10},
+      "loan_repayment_window": {"start_month": 11, "end_month": 1},
+      "agmarknet_commodity": "Soyabean"
+    },
+    "tur": {
+      "name_mr": "तूर",
+      "msp_rs_per_quintal": 8000,
+      "msp_variety": "arhar",
+      "sowing": {"start_month": 6, "end_month": 7},
+      "harvest": {"start_month": 12, "end_month": 2},
+      "loan_repayment_window": {"start_month": 3, "end_month": 5},
+      "agmarknet_commodity": "Arhar (Tur/Red Gram)(Whole)"
+    }
+  },
+  "monsoon_months": [6, 7, 8, 9],
+  "kharif_critical_rain_window": {"start_month": 6, "end_month": 8, "note": "Sowing + establishment; deficit here drives crop failure risk"}
+}

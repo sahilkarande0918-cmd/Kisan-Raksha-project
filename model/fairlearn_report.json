@@ -1,0 +1,58 @@
+{
+  "model": "LightGBM FSI regressor",
+  "decision_audited": "critical alert (FSI > 75)",
+  "note": "false_negative_rate = share of truly-critical cases NOT alerted; this is the harm metric for farmers.",
+  "region": {
+    "by_group": {
+      "Marathwada": {
+        "alert_rate": 0.0771,
+        "false_negative_rate": 0.2288,
+        "false_positive_rate": 0.0151
+      },
+      "Vidarbha": {
+        "alert_rate": 0.0637,
+        "false_negative_rate": 0.2048,
+        "false_positive_rate": 0.0105
+      }
+    },
+    "mae_by_group": {
+      "Marathwada": 3.754,
+      "Vidarbha": 3.739
+    },
+    "fnr_gap": 0.024,
+    "alert_rate_gap": 0.0134,
+    "mae_gap": 0.015
+  },
+  "crop": {
+    "by_group": {
+      "cotton": {
+        "alert_rate": 0.0476,
+        "false_negative_rate": 0.2692,
+        "false_positive_rate": 0.0105
+      },
+      "soybean": {
+        "alert_rate": 0.0929,
+        "false_negative_rate": 0.1957,
+        "false_positive_rate": 0.0154
+      },
+      "tur": {
+        "alert_rate": 0.075,
+        "false_negative_rate": 0.2105,
+        "false_positive_rate": 0.0136
+      }
+    },
+    "mae_by_group": {
+      "cotton": 3.877,
+      "soybean": 3.683,
+      "tur": 3.65
+    },
+    "fnr_gap": 0.0736,
+    "alert_rate_gap": 0.0453,
+    "mae_gap": 0.226
+  },
+  "gates": {
+    "fnr_gap_region_lt_0.10": true,
+    "fnr_gap_crop_lt_0.10": true,
+    "mae_gap_region_lt_2.0": true
+  }
+}

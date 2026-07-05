@@ -1,0 +1,21 @@
+{
+  "description": "KisaanRaksha target districts — Vidarbha + Marathwada, Maharashtra. Coordinates are district HQ. Region tag used as sensitive feature in Fairlearn bias testing.",
+  "districts": [
+    {"name": "Amravati", "region": "Vidarbha", "lat": 20.9374, "lon": 77.7796, "talukas": ["Amravati", "Achalpur", "Daryapur", "Morshi", "Warud", "Chandur Railway", "Dhamangaon", "Anjangaon"], "major_crops": ["cotton", "soybean", "tur"]},
+    {"name": "Yavatmal", "region": "Vidarbha", "lat": 20.3888, "lon": 78.1204, "talukas": ["Yavatmal", "Pusad", "Umarkhed", "Wani", "Ghatanji", "Ralegaon", "Darwha", "Digras"], "major_crops": ["cotton", "soybean", "tur"]},
+    {"name": "Akola", "region": "Vidarbha", "lat": 20.7002, "lon": 77.0082, "talukas": ["Akola", "Akot", "Balapur", "Murtijapur", "Patur", "Telhara", "Barshitakli"], "major_crops": ["cotton", "soybean", "tur"]},
+    {"name": "Buldhana", "region": "Vidarbha", "lat": 20.5293, "lon": 76.1804, "talukas": ["Buldhana", "Chikhli", "Khamgaon", "Malkapur", "Mehkar", "Jalgaon Jamod", "Shegaon"], "major_crops": ["cotton", "soybean", "tur"]},
+    {"name": "Washim", "region": "Vidarbha", "lat": 20.1111, "lon": 77.1330, "talukas": ["Washim", "Karanja", "Mangrulpir", "Malegaon", "Risod", "Manora"], "major_crops": ["soybean", "cotton", "tur"]},
+    {"name": "Wardha", "region": "Vidarbha", "lat": 20.7453, "lon": 78.6022, "talukas": ["Wardha", "Hinganghat", "Arvi", "Deoli", "Samudrapur", "Seloo", "Karanja", "Ashti"], "major_crops": ["cotton", "soybean", "tur"]},
+    {"name": "Nagpur", "region": "Vidarbha", "lat": 21.1458, "lon": 79.0882, "talukas": ["Nagpur Rural", "Katol", "Narkhed", "Savner", "Kalameshwar", "Ramtek", "Umred", "Hingna"], "major_crops": ["cotton", "soybean", "orange"]},
+    {"name": "Chandrapur", "region": "Vidarbha", "lat": 19.9615, "lon": 79.2961, "talukas": ["Chandrapur", "Warora", "Bhadravati", "Chimur", "Rajura", "Mul", "Brahmapuri"], "major_crops": ["cotton", "soybean", "rice"]},
+    {"name": "Chhatrapati Sambhajinagar", "region": "Marathwada", "lat": 19.8762, "lon": 75.3433, "talukas": ["Aurangabad", "Paithan", "Gangapur", "Vaijapur", "Kannad", "Sillod", "Phulambri", "Khuldabad"], "major_crops": ["cotton", "maize", "tur"]},
+    {"name": "Jalna", "region": "Marathwada", "lat": 19.8410, "lon": 75.8864, "talukas": ["Jalna", "Ambad", "Bhokardan", "Badnapur", "Ghansawangi", "Partur", "Mantha", "Jafrabad"], "major_crops": ["cotton", "soybean", "tur"]},
+    {"name": "Beed", "region": "Marathwada", "lat": 18.9891, "lon": 75.7601, "talukas": ["Beed", "Georai", "Majalgaon", "Ambajogai", "Kaij", "Dharur", "Parli", "Ashti", "Patoda", "Shirur Kasar", "Wadwani"], "major_crops": ["cotton", "soybean", "tur"]},
+    {"name": "Latur", "region": "Marathwada", "lat": 18.4088, "lon": 76.5604, "talukas": ["Latur", "Ausa", "Nilanga", "Udgir", "Ahmedpur", "Chakur", "Renapur", "Deoni", "Shirur Anantpal", "Jalkot"], "major_crops": ["soybean", "tur", "cotton"]},
+    {"name": "Dharashiv", "region": "Marathwada", "lat": 18.1860, "lon": 76.0419, "talukas": ["Osmanabad", "Tuljapur", "Umarga", "Lohara", "Kalamb", "Bhum", "Paranda", "Washi"], "major_crops": ["soybean", "tur", "cotton"]},
+    {"name": "Nanded", "region": "Marathwada", "lat": 19.1383, "lon": 77.3210, "talukas": ["Nanded", "Mudkhed", "Ardhapur", "Bhokar", "Umri", "Loha", "Kandhar", "Kinwat", "Hadgaon", "Himayatnagar", "Mahur", "Deglur", "Biloli", "Mukhed", "Dharmabad", "Naigaon"], "major_crops": ["cotton", "soybean", "tur"]},
+    {"name": "Parbhani", "region": "Marathwada", "lat": 19.2686, "lon": 76.7708, "talukas": ["Parbhani", "Gangakhed", "Sonpeth", "Pathri", "Manwath", "Palam", "Purna", "Sailu", "Jintur"], "major_crops": ["cotton", "soybean", "tur"]},
+    {"name": "Hingoli", "region": "Marathwada", "lat": 19.7173, "lon": 77.1494, "talukas": ["Hingoli", "Kalamnuri", "Basmath", "Aundha Nagnath", "Sengaon"], "major_crops": ["soybean", "cotton", "tur"]}
+  ]
+}
