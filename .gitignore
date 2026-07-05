@@ -23,3 +23,6 @@ Thumbs.db
 
 # ngrok
 ngrok.exe
+node_modules/
+package-lock.json
+package.json

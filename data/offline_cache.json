@@ -10,7 +10,7 @@
    "drought_signal": 0.106,
    "source": "Open-Meteo ERA5 archive (open-meteo.com)",
    "cached": false,
-   "cached_at": "2026-07-05T16:24:11+00:00"
+   "cached_at": "2026-07-05T16:35:19+00:00"
   },
   "Latur": {
    "district": "Latur",
@@ -35,7 +35,7 @@
    "ndvi_signal": 0.77,
    "source": "NASA MODIS MOD13Q1 via ORNL Subsets API (modis.ornl.gov)",
    "cached": false,
-   "cached_at": "2026-07-05T16:24:15+00:00"
+   "cached_at": "2026-07-05T16:35:23+00:00"
   },
   "Latur": {
    "district": "Latur",
@@ -62,7 +62,7 @@
    "scope": "national",
    "source": "Agmarknet via data.gov.in (Ministry of Agriculture)",
    "cached": false,
-   "cached_at": "2026-07-05T16:24:12+00:00"
+   "cached_at": "2026-07-05T16:35:21+00:00"
   },
   "Latur:soybean": {
    "district": "Latur",
