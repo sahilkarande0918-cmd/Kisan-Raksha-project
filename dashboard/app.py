@@ -12,21 +12,15 @@ import streamlit as st
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from dashboard import ui  # noqa: E402
-from dashboard.views import about_page, activity_page, districts_page, overview  # noqa: E402
 
 st.set_page_config(page_title="KisaanRaksha — FSI Command Centre", page_icon="🌾",
                    layout="wide")
 ui.inject_css()
 
-nav = st.navigation([
-    st.Page(overview.render, title="Overview", icon="🗺️", url_path="overview", default=True),
-    st.Page(districts_page.render, title="Districts", icon="📍", url_path="districts"),
-    st.Page(activity_page.render, title="Field activity", icon="📞", url_path="activity"),
-    st.Page(about_page.render, title="About", icon="🌾", url_path="about"),
-])
+pages = ui.build_pages()
+nav = st.navigation(list(pages.values()))
 
-ui.topbar(getattr(nav, "url_path", "overview"))
-ui.back_arrow()
+ui.topbar(pages, active=getattr(nav, "url_path", "overview") or "overview")
 
 with st.sidebar:
     st.markdown("### 🌾 KisaanRaksha")

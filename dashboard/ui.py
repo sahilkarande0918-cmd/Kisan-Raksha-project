@@ -37,6 +37,8 @@ CSS = """
   html, body, [class*="css"], .stApp, p, li, label, input, textarea {
       font-family: 'Inter', 'Segoe UI', sans-serif;
   }
+  /* light base so a page load never flashes to black */
+  html, body, #root, [data-testid="stAppViewContainer"] { background-color: #eef7ee; }
   h1, h2, h3, h4, .hero h1, .brand, .dname,
   [data-testid="stMarkdownContainer"] h1,
   [data-testid="stMarkdownContainer"] h2,
@@ -61,15 +63,20 @@ CSS = """
   }
   .stApp::before, .stApp::after {
       content: ""; position: fixed; z-index: 0; pointer-events: none;
-      border-radius: 50%; filter: blur(80px);
+      border-radius: 50%; filter: blur(70px);
+      will-change: transform; transform: translateZ(0);
+      backface-visibility: hidden;
   }
   .stApp::before {
-      width: 46vw; height: 46vw; background: radial-gradient(circle, #4caf50, #81c784);
-      opacity:.26; top: -12vw; right: -10vw; animation: drift1 26s ease-in-out infinite;
+      width: 44vw; height: 44vw; background: radial-gradient(circle, #4caf50, #81c784);
+      opacity:.24; top: -12vw; right: -10vw; animation: drift1 30s ease-in-out infinite;
   }
   .stApp::after {
-      width: 40vw; height: 40vw; background: radial-gradient(circle, #aed581, #dcedc8);
-      opacity:.32; bottom: -10vw; left: -8vw; animation: drift2 32s ease-in-out infinite;
+      width: 38vw; height: 38vw; background: radial-gradient(circle, #aed581, #dcedc8);
+      opacity:.30; bottom: -10vw; left: -8vw; animation: drift2 36s ease-in-out infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+      .stApp::before, .stApp::after, .hero { animation: none !important; }
   }
   @keyframes drift1 { 0%,100% {transform: translate(0,0) scale(1);} 50% {transform: translate(-7vw,5vh) scale(1.10);} }
   @keyframes drift2 { 0%,100% {transform: translate(0,0) scale(1);} 50% {transform: translate(6vw,-5vh) scale(1.07);} }
@@ -96,15 +103,15 @@ CSS = """
   /* ---------- green glassmorphism recipe ---------- */
   .kcard {
       position: relative; display:block; text-decoration: none !important;
-      background: linear-gradient(135deg, rgba(255,255,255,.52) 0%, rgba(232,245,233,.34) 55%, rgba(200,230,201,.28) 100%);
-      backdrop-filter: blur(18px) saturate(170%); -webkit-backdrop-filter: blur(18px) saturate(170%);
+      background: linear-gradient(135deg, rgba(255,255,255,.62) 0%, rgba(232,245,233,.44) 55%, rgba(200,230,201,.36) 100%);
+      backdrop-filter: blur(11px); -webkit-backdrop-filter: blur(11px);
       border: 1px solid rgba(255,255,255,.65);
       border-top: 1.5px solid rgba(255,255,255,.9);
       border-radius: 18px; padding: 18px 20px 14px;
-      box-shadow: 0 8px 32px rgba(27,94,32,.16), inset 0 1px 0 rgba(255,255,255,.6);
-      transition: transform .35s cubic-bezier(.2,.8,.3,1), box-shadow .35s ease, border-color .35s ease;
-      transform-style: preserve-3d; will-change: transform;
-      animation: fadeUp .6s ease both;
+      box-shadow: 0 8px 26px rgba(27,94,32,.14), inset 0 1px 0 rgba(255,255,255,.6);
+      transition: transform .3s cubic-bezier(.2,.8,.3,1), box-shadow .3s ease, border-color .3s ease;
+      will-change: transform; transform: translateZ(0);
+      animation: fadeUp .5s ease both;
       overflow: hidden;
   }
   .kcard::before {
@@ -136,14 +143,15 @@ CSS = """
   .dgrid { display:grid; grid-template-columns: repeat(auto-fill, minmax(250px,1fr)); gap:14px; }
   .dcard {
       position:relative; display:block; text-decoration:none !important;
-      background: linear-gradient(135deg, rgba(255,255,255,.55) 0%, rgba(232,245,233,.35) 100%);
-      backdrop-filter: blur(16px) saturate(160%); -webkit-backdrop-filter: blur(16px) saturate(160%);
+      background: linear-gradient(135deg, rgba(255,255,255,.66) 0%, rgba(232,245,233,.46) 100%);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
       border:1px solid rgba(255,255,255,.6); border-left:6px solid var(--lvl,#2e7d32);
       border-top: 1.5px solid rgba(255,255,255,.85);
       border-radius:16px; padding:14px 16px;
-      box-shadow:0 6px 24px rgba(27,94,32,.14), inset 0 1px 0 rgba(255,255,255,.55);
-      transition: transform .3s cubic-bezier(.2,.8,.3,1), box-shadow .3s ease;
-      animation: fadeUp .5s ease both;
+      box-shadow:0 6px 20px rgba(27,94,32,.12), inset 0 1px 0 rgba(255,255,255,.55);
+      transition: transform .28s cubic-bezier(.2,.8,.3,1), box-shadow .28s ease;
+      will-change: transform; transform: translateZ(0);
+      animation: fadeUp .45s ease both;
   }
   .dcard:hover { transform: perspective(700px) rotateX(2.5deg) translateY(-4px) scale(1.015);
                  box-shadow:0 16px 40px rgba(27,94,32,.26), inset 0 1px 0 rgba(255,255,255,.65); }
@@ -176,14 +184,15 @@ CSS = """
 
   /* ---------- section panels (green glass) ---------- */
   .panel {
-      background: linear-gradient(150deg, rgba(255,255,255,.50) 0%, rgba(232,245,233,.32) 60%, rgba(220,237,200,.26) 100%);
-      backdrop-filter: blur(20px) saturate(160%); -webkit-backdrop-filter: blur(20px) saturate(160%);
+      background: linear-gradient(150deg, rgba(255,255,255,.60) 0%, rgba(232,245,233,.42) 60%, rgba(220,237,200,.36) 100%);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
       border:1px solid rgba(255,255,255,.62);
       border-top: 1.5px solid rgba(255,255,255,.88);
       border-radius:20px;
       padding:22px 26px; margin-bottom:1rem;
-      box-shadow:0 10px 34px rgba(27,94,32,.14), inset 0 1px 0 rgba(255,255,255,.55);
-      animation: fadeUp .6s ease both;
+      box-shadow:0 10px 28px rgba(27,94,32,.12), inset 0 1px 0 rgba(255,255,255,.55);
+      will-change: transform; transform: translateZ(0);
+      animation: fadeUp .5s ease both;
   }
   .panel h3 { margin-top:0; color:#1b5e20; }
 
@@ -206,81 +215,96 @@ CSS = """
 
   [data-testid="stSidebarNav"] { display:none; }  /* we render our own nav via the topbar */
 
-  /* ---------- sticky top navigation bar ---------- */
-  [data-testid="stHeader"] { background: rgba(252,253,251,.55); backdrop-filter: blur(8px); }
-  .topbar {
-      position: sticky; top: 3.4rem; z-index: 999;
-      display: flex; align-items: center; gap: 6px;
-      background: linear-gradient(120deg, rgba(255,255,255,.60) 0%, rgba(232,245,233,.42) 100%);
-      backdrop-filter: blur(22px) saturate(180%); -webkit-backdrop-filter: blur(22px) saturate(180%);
-      border: 1px solid rgba(255,255,255,.70);
+  /* ---------- smooth scrolling ---------- */
+  html { scroll-behavior: smooth; }
+  [data-testid="stMain"], section.main, .stApp { scroll-behavior: smooth; }
+
+  /* ---------- sticky glass top navigation bar (native page links) ---------- */
+  [data-testid="stHeader"] { background: rgba(247,251,245,.65); backdrop-filter: blur(8px); }
+  .st-key-topbar {
+      position: sticky; top: .4rem; z-index: 1000;
+      background: linear-gradient(120deg, rgba(255,255,255,.72) 0%, rgba(232,245,233,.58) 100%);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,.75);
       border-top: 1.5px solid rgba(255,255,255,.95);
       border-radius: 16px;
-      padding: 10px 18px; margin-bottom: 14px;
-      box-shadow: 0 10px 30px rgba(27,94,32,.16), inset 0 1px 0 rgba(255,255,255,.6);
-      animation: fadeUp .5s ease both;
+      padding: 6px 16px; margin-bottom: 16px;
+      box-shadow: 0 8px 24px rgba(27,94,32,.16);
+      transform: translateZ(0);   /* promote to its own GPU layer */
   }
-  .topbar .brand {
-      font-weight: 800; color: #1b5e20 !important; font-size: 1.05rem;
-      margin-right: auto; text-decoration: none !important;
-      display: flex; align-items: center; gap: 8px;
+  .st-key-topbar [data-testid="stHorizontalBlock"] { gap: .4rem; }
+  .brandwrap { font-family:'Sora',sans-serif; font-weight:800; color:#1b5e20;
+               font-size:1.08rem; white-space:nowrap; }
+  /* pill styling for native page links */
+  .st-key-topbar [data-testid="stPageLink"] a {
+      border-radius: 11px; padding: 7px 8px; justify-content: center;
+      transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
   }
-  .topbar a.nlink {
-      text-decoration: none !important; color: #2f5136 !important;
-      font-weight: 600; font-size: .9rem; padding: 6px 16px; border-radius: 10px;
-      transition: background .25s ease, color .25s ease, transform .25s ease;
+  .st-key-topbar [data-testid="stPageLink"] a p { font-weight: 600; color:#2f5136; }
+  .st-key-topbar [data-testid="stPageLink"] a:hover {
+      background: #e2f2e2 !important; transform: translateY(-1px);
   }
-  .topbar a.nlink:hover { background: #e8f5e9; transform: translateY(-1px); }
-  .topbar a.nlink.active {
-      background: linear-gradient(120deg, #1b5e20, #43a047);
-      color: #ffffff !important;
+  /* active page link (Streamlit marks it aria-current) */
+  .st-key-topbar [data-testid="stPageLink"] a[aria-current="page"] {
+      background: linear-gradient(120deg, #1b5e20, #43a047) !important;
       box-shadow: 0 4px 12px rgba(27,94,32,.30);
   }
+  .st-key-topbar [data-testid="stPageLink"] a[aria-current="page"] p { color: #fff !important; }
+
+  /* ---------- skeleton shimmer (themed loading state) ---------- */
+  .skwrap { display:grid; grid-template-columns: repeat(4,1fr); gap:14px; margin:8px 0 18px; }
+  .sk {
+      height: 92px; border-radius: 16px;
+      background: linear-gradient(100deg, rgba(232,245,233,.55) 30%, rgba(255,255,255,.85) 50%, rgba(232,245,233,.55) 70%);
+      background-size: 200% 100%;
+      border: 1px solid rgba(165,214,167,.5);
+      animation: shimmer 1.3s ease-in-out infinite;
+  }
+  .sk.tall { height: 300px; }
+  @keyframes shimmer { 0% {background-position: 180% 0;} 100% {background-position: -180% 0;} }
 </style>
 """
-
-
-NAV_ITEMS = [
-    ("overview", "🗺️ Home"),
-    ("districts", "📍 Districts"),
-    ("activity", "📞 Field activity"),
-    ("about", "🌾 About"),
-]
 
 
 def inject_css() -> None:
     st.markdown(CSS, unsafe_allow_html=True)
 
 
-def topbar(active: str) -> None:
-    """Sticky navigation bar shown on every page."""
-    links = "".join(
-        f'<a class="nlink{" active" if path == active else ""}" href="{path}" '
-        f'target="_self">{label}</a>'
-        for path, label in NAV_ITEMS)
+def build_pages() -> dict:
+    """Create the page objects once; shared by st.navigation and the topbar."""
+    from dashboard.views import about_page, activity_page, districts_page, overview
+    return {
+        "overview": st.Page(overview.render, title="Home", icon="🗺️",
+                            url_path="overview", default=True),
+        "districts": st.Page(districts_page.render, title="Districts", icon="📍",
+                             url_path="districts"),
+        "activity": st.Page(activity_page.render, title="Field activity", icon="📞",
+                            url_path="activity"),
+        "about": st.Page(about_page.render, title="About", icon="🌾", url_path="about"),
+    }
+
+
+def topbar(pages: dict, active: str = "overview") -> None:
+    """Sticky navigation bar using native page links (instant, no page reload)."""
+    with st.container(key="topbar"):
+        c = st.columns([2.4, 1, 1.15, 1.5, 1], vertical_alignment="center")
+        c[0].markdown("<div class='brandwrap'>🌾&nbsp;<b>KisaanRaksha</b></div>",
+                      unsafe_allow_html=True)
+        c[1].page_link(pages["overview"], label="Home", icon="🗺️")
+        c[2].page_link(pages["districts"], label="Districts", icon="📍")
+        c[3].page_link(pages["activity"], label="Field activity", icon="📞")
+        c[4].page_link(pages["about"], label="About", icon="🌾")
+    # Streamlit marks the active link only with an unstable hashed class, so we
+    # drive the active pill from the page we already know is current.
+    col = {"overview": 2, "districts": 3, "activity": 4, "about": 5}.get(active, 2)
     st.markdown(
-        f"""<div class="topbar">
-              <a class="brand" href="overview" target="_self">🌾 KisaanRaksha</a>
-              {links}
-            </div>""",
+        f"<style>"
+        f".st-key-topbar [data-testid='stColumn']:nth-child({col}) [data-testid='stPageLink'] a"
+        f"{{background:linear-gradient(120deg,#1b5e20,#43a047)!important;"
+        f"box-shadow:0 4px 12px rgba(27,94,32,.30);}}"
+        f".st-key-topbar [data-testid='stColumn']:nth-child({col}) [data-testid='stPageLink'] a p"
+        f"{{color:#ffffff!important;}}</style>",
         unsafe_allow_html=True)
-
-
-def back_arrow() -> None:
-    """Small circular button that navigates to the previous page."""
-    import streamlit.components.v1 as components
-    components.html("""
-      <div style="margin:0;padding:0">
-        <button onclick="window.parent.history.back()" title="Go back"
-          style="width:38px;height:38px;border-radius:50%;cursor:pointer;
-                 border:1px solid rgba(46,125,50,.35);
-                 background:rgba(255,255,255,.85);color:#1b5e20;
-                 font-size:18px;font-weight:800;line-height:1;
-                 box-shadow:0 4px 12px rgba(27,94,32,.15);
-                 transition:transform .2s ease, box-shadow .2s ease"
-          onmouseover="this.style.transform='translateX(-3px)';this.style.boxShadow='0 6px 16px rgba(27,94,32,.28)'"
-          onmouseout="this.style.transform='';this.style.boxShadow='0 4px 12px rgba(27,94,32,.15)'">←</button>
-      </div>""", height=46)
 
 
 def hero(title: str, subtitle: str) -> None:
