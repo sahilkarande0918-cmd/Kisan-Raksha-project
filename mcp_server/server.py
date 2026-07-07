@@ -60,13 +60,15 @@ def get_farmer_history(phone: str) -> dict:
 
 @mcp.tool
 def send_officer_alert(district: str, crop: str = "cotton", simulate_crisis: bool = False,
-                       to_number: str = "") -> dict:
+                       to_number: str = "", farmer_contact: str = "") -> dict:
     """Send the WhatsApp alert for a district's current FSI to the duty
-    officer (Twilio). Only call when FSI is CRITICAL or officer requests it."""
+    officer (Twilio). Only call when FSI is CRITICAL or officer requests it.
+    farmer_contact is injected by the runtime (webhook From number) so the
+    officer can call back — leave it empty; do not fill it yourself."""
     result = fsi.compute_fsi(district, crop, simulate_crisis)
     if "error" in result:
         return result
-    return _send_alert(result, to_number or None)
+    return _send_alert(result, to_number or None, farmer_contact)
 
 
 @mcp.tool

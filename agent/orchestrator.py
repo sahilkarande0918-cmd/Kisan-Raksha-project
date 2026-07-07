@@ -95,6 +95,11 @@ async def run_agent(user_message: str, phone: str = "unknown") -> dict:
             for tc in msg.tool_calls:
                 try:
                     args = json.loads(tc.function.arguments or "{}")
+                    if tc.function.name == "send_officer_alert":
+                        # deterministic injection: the raw callback number goes
+                        # into the live alert only — the LLM never sees it, and
+                        # this overwrites anything the model may have invented
+                        args["farmer_contact"] = "" if phone == "unknown" else phone
                     result = await mcp_client.call_tool(tc.function.name, args)
                     payload = result.data if hasattr(result, "data") else str(result)
                 except Exception as e:

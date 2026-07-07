@@ -32,11 +32,19 @@ def send_whatsapp(to: str, body: str) -> dict:
     return {"sent": True, "to": to, "message_sids": sids, "chunks": len(chunks)}
 
 
-def format_officer_alert(fsi_result: dict, farmers_in_window: int = 312) -> str:
-    """Compose the officer alert message from an FSI result."""
+def format_officer_alert(fsi_result: dict, farmer_contact: str = "") -> str:
+    """Compose the officer alert message from an FSI result.
+
+    Only states facts the system actually derived — no invented counts.
+    Farmer-count integration is a pilot deliverable (Krishi Vibhag loan roster).
+    farmer_contact: raw callback number, transient — appears in this live
+    message only, never persisted (storage uses hashed IDs, see memory.py).
+    """
     sig = fsi_result.get("signals", {})
     price = sig.get("price", {})
     drought = sig.get("drought", {})
+    repay = sig.get("repayment_proximity", 0)
+    repay_status = "ACTIVE" if repay >= 1.0 else ("APPROACHING" if repay > 0 else "not current")
     lines = [
         f"⚠️ KisaanRaksha Alert: {fsi_result.get('district')} ({fsi_result.get('region')})",
         f"FSI = {fsi_result.get('fsi')} ({fsi_result.get('level')})",
@@ -45,17 +53,20 @@ def format_officer_alert(fsi_result: dict, farmers_in_window: int = 312) -> str:
         f"Market price: Rs.{price.get('market_price')}/qtl "
         f"({price.get('gap_below_msp_pct')}% below MSP Rs.{price.get('msp')})",
         f"NDVI (satellite): {sig.get('ndvi', {}).get('latest_ndvi')}",
-        f"Est. farmers in repayment window: {farmers_in_window}",
+        f"Loan-repayment window: {repay_status}",
         "Action: proactive outreach + PMFBY survey recommended.",
     ]
+    if farmer_contact:
+        lines.insert(3, f"Farmer contact (callback): {farmer_contact}")
     if fsi_result.get("mode"):
         lines.append(f"[{fsi_result['mode']}]")
     return "\n".join(lines)
 
 
-def send_officer_alert(fsi_result: dict, to: str | None = None) -> dict:
+def send_officer_alert(fsi_result: dict, to: str | None = None,
+                       farmer_contact: str = "") -> dict:
     dest = to or get_env("OFFICER_WHATSAPP_TO")
-    body = format_officer_alert(fsi_result)
+    body = format_officer_alert(fsi_result, farmer_contact)
     result = send_whatsapp(dest, body)
     result["alert_body"] = body
     return result
