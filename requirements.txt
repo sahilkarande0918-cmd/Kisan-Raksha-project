@@ -1,20 +1,22 @@
-# KisaanRaksha — core dependencies (all free / open-source)
+# KisaanRaksha — dependencies (all free / open-source)
+# ML libs pinned so the saved model unpickles identically in the cloud.
 fastapi
 uvicorn[standard]
 fastmcp
 python-dotenv
 requests
-pandas
-numpy
-scikit-learn
-lightgbm
-fairlearn
+pandas==3.0.3
+numpy==2.3.5
+scikit-learn==1.9.0
+lightgbm==4.6.0
+joblib==1.5.3
+fairlearn==0.14.0
 google-genai
 groq
 twilio
-streamlit
-plotly
-joblib
+streamlit==1.58.0
+plotly==6.8.0
+pydeck==0.9.3
 
 # Optional heavy ASR (AI4Bharat local inference) — install separately if needed:
 # torch
