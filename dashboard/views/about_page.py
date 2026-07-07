@@ -78,7 +78,7 @@ def render() -> None:
       <span class="sdg">SDG 2 · Zero Hunger</span>
       <span class="sdg">SDG 3 · Good Health & Well-Being</span>
       <span class="sdg">SDG 10 · Reduced Inequalities</span>
-      <p style="margin-top:16px;color:#4b6b50">Team: Sahil Karande · [Teammate] &nbsp;·&nbsp;
+      <p style="margin-top:16px;color:#4b6b50">Team: Sahil Karande · Pranav Shripannavar &nbsp;·&nbsp;
       <a href="https://github.com/sahilkarande0918-cmd/Kisan-Raksha-project">GitHub repository</a><br/>
       <i>"Technology must serve humanity — KisaanRaksha points it at the farmer the system forgot."</i></p>
     </div>""", unsafe_allow_html=True)

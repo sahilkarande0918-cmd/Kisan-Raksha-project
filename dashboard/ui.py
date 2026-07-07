@@ -28,33 +28,51 @@ LEVEL_COLORS = {"CRITICAL": "#c62828", "HIGH": "#ef6c00", "MODERATE": "#f9a825",
 # ---------------------------------------------------------------- styling ----
 CSS = """
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 
-  html, body, [class*="css"] { font-family: 'Sora', 'Segoe UI', sans-serif; }
-  .block-container { padding-top: 1.0rem; max-width: 1250px; }
-  h1, h2, h3 { letter-spacing: -0.5px; }
+  /* ---------- typography system ----------
+     Sora        -> display / headings
+     Inter       -> body, UI, labels
+     Space Grotesk -> numbers, metrics, data                    */
+  html, body, [class*="css"], .stApp, p, li, label, input, textarea {
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+  }
+  h1, h2, h3, h4, .hero h1, .brand, .dname,
+  [data-testid="stMarkdownContainer"] h1,
+  [data-testid="stMarkdownContainer"] h2,
+  [data-testid="stMarkdownContainer"] h3 {
+      font-family: 'Sora', 'Segoe UI', sans-serif !important;
+      letter-spacing: -0.6px;
+  }
+  .kvalue, .dfsi, [data-testid="stMetricValue"] {
+      font-family: 'Space Grotesk', monospace !important;
+      font-feature-settings: 'tnum';
+  }
+  .block-container { padding-top: 4.4rem; max-width: 1250px; }
 
-  /* ---------- animated field background ---------- */
+  /* ---------- layered mesh background (gives the glass something to blur) -- */
   .stApp {
       background:
-        radial-gradient(60vw 60vw at 110% -10%, rgba(129,199,132,.20), transparent 60%),
-        radial-gradient(50vw 50vw at -10% 110%, rgba(174,213,129,.22), transparent 60%),
-        linear-gradient(165deg, #f7fbf5 0%, #eef7ee 55%, #f2f8ec 100%);
+        radial-gradient(55vw 55vw at 112% -8%,  rgba(102,187,106,.34), transparent 62%),
+        radial-gradient(48vw 48vw at -12% 108%, rgba(174,213,129,.38), transparent 60%),
+        radial-gradient(34vw 34vw at 84% 82%,   rgba(38,166,154,.16),  transparent 60%),
+        radial-gradient(30vw 30vw at 12% 18%,   rgba(255,241,118,.18), transparent 58%),
+        linear-gradient(160deg, #f2faf0 0%, #e4f3e4 48%, #edf7e4 100%);
   }
   .stApp::before, .stApp::after {
       content: ""; position: fixed; z-index: 0; pointer-events: none;
-      border-radius: 50%; filter: blur(90px);
+      border-radius: 50%; filter: blur(80px);
   }
   .stApp::before {
-      width: 44vw; height: 44vw; background: #66bb6a; opacity:.14;
-      top: -12vw; right: -10vw; animation: drift1 26s ease-in-out infinite;
+      width: 46vw; height: 46vw; background: radial-gradient(circle, #4caf50, #81c784);
+      opacity:.26; top: -12vw; right: -10vw; animation: drift1 26s ease-in-out infinite;
   }
   .stApp::after {
-      width: 36vw; height: 36vw; background: #c5e1a5; opacity:.20;
-      bottom: -10vw; left: -8vw; animation: drift2 32s ease-in-out infinite;
+      width: 40vw; height: 40vw; background: radial-gradient(circle, #aed581, #dcedc8);
+      opacity:.32; bottom: -10vw; left: -8vw; animation: drift2 32s ease-in-out infinite;
   }
-  @keyframes drift1 { 0%,100% {transform: translate(0,0) scale(1);} 50% {transform: translate(-6vw,4vh) scale(1.08);} }
-  @keyframes drift2 { 0%,100% {transform: translate(0,0) scale(1);} 50% {transform: translate(5vw,-4vh) scale(1.06);} }
+  @keyframes drift1 { 0%,100% {transform: translate(0,0) scale(1);} 50% {transform: translate(-7vw,5vh) scale(1.10);} }
+  @keyframes drift2 { 0%,100% {transform: translate(0,0) scale(1);} 50% {transform: translate(6vw,-5vh) scale(1.07);} }
 
   /* ---------- hero ---------- */
   .hero {
@@ -75,22 +93,30 @@ CSS = """
       pointer-events:none;
   }
 
-  /* ---------- glass cards + 3D tilt ---------- */
+  /* ---------- green glassmorphism recipe ---------- */
   .kcard {
       position: relative; display:block; text-decoration: none !important;
-      background: rgba(255,255,255,.72);
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(46,125,50,.22);
-      border-radius: 16px; padding: 18px 20px 14px;
-      box-shadow: 0 8px 24px rgba(27,94,32,.10);
+      background: linear-gradient(135deg, rgba(255,255,255,.52) 0%, rgba(232,245,233,.34) 55%, rgba(200,230,201,.28) 100%);
+      backdrop-filter: blur(18px) saturate(170%); -webkit-backdrop-filter: blur(18px) saturate(170%);
+      border: 1px solid rgba(255,255,255,.65);
+      border-top: 1.5px solid rgba(255,255,255,.9);
+      border-radius: 18px; padding: 18px 20px 14px;
+      box-shadow: 0 8px 32px rgba(27,94,32,.16), inset 0 1px 0 rgba(255,255,255,.6);
       transition: transform .35s cubic-bezier(.2,.8,.3,1), box-shadow .35s ease, border-color .35s ease;
       transform-style: preserve-3d; will-change: transform;
       animation: fadeUp .6s ease both;
+      overflow: hidden;
   }
+  .kcard::before {
+      content:""; position:absolute; top:0; left:-70%; width:50%; height:100%;
+      background: linear-gradient(105deg, transparent, rgba(255,255,255,.45), transparent);
+      transform: skewX(-20deg); transition: left .6s ease;
+  }
+  .kcard:hover::before { left: 130%; }
   .kcard:hover {
       transform: perspective(900px) rotateX(3deg) rotateY(-3deg) translateY(-5px);
-      box-shadow: 0 18px 42px rgba(27,94,32,.22);
-      border-color: rgba(46,125,50,.55);
+      box-shadow: 0 20px 48px rgba(27,94,32,.26), inset 0 1px 0 rgba(255,255,255,.7);
+      border-color: rgba(165,214,167,.95);
   }
   .kcard .klabel { font-size:.82rem; color:#4b6b50; font-weight:600; margin-bottom:2px; }
   .kcard .kvalue { font-size:2.0rem; font-weight:800; color:#1b5e20; line-height:1.15; }
@@ -110,15 +136,17 @@ CSS = """
   .dgrid { display:grid; grid-template-columns: repeat(auto-fill, minmax(250px,1fr)); gap:14px; }
   .dcard {
       position:relative; display:block; text-decoration:none !important;
-      background: rgba(255,255,255,.78); backdrop-filter: blur(10px);
-      border:1px solid rgba(46,125,50,.18); border-left:6px solid var(--lvl,#2e7d32);
-      border-radius:14px; padding:14px 16px;
-      box-shadow:0 6px 18px rgba(27,94,32,.08);
+      background: linear-gradient(135deg, rgba(255,255,255,.55) 0%, rgba(232,245,233,.35) 100%);
+      backdrop-filter: blur(16px) saturate(160%); -webkit-backdrop-filter: blur(16px) saturate(160%);
+      border:1px solid rgba(255,255,255,.6); border-left:6px solid var(--lvl,#2e7d32);
+      border-top: 1.5px solid rgba(255,255,255,.85);
+      border-radius:16px; padding:14px 16px;
+      box-shadow:0 6px 24px rgba(27,94,32,.14), inset 0 1px 0 rgba(255,255,255,.55);
       transition: transform .3s cubic-bezier(.2,.8,.3,1), box-shadow .3s ease;
       animation: fadeUp .5s ease both;
   }
   .dcard:hover { transform: perspective(700px) rotateX(2.5deg) translateY(-4px) scale(1.015);
-                 box-shadow:0 14px 34px rgba(27,94,32,.20); }
+                 box-shadow:0 16px 40px rgba(27,94,32,.26), inset 0 1px 0 rgba(255,255,255,.65); }
   .dcard .dname { font-weight:700; color:#1b2e1f; font-size:1.02rem; }
   .dcard .dregion { font-size:.75rem; color:#6b8a70; }
   .dcard .dfsi { font-size:1.7rem; font-weight:800; color:var(--lvl,#2e7d32); }
@@ -146,12 +174,15 @@ CSS = """
       border:1px solid #ef9a9a; animation: livepulse 2.4s ease-in-out infinite;
   }
 
-  /* ---------- section panels ---------- */
+  /* ---------- section panels (green glass) ---------- */
   .panel {
-      background: rgba(255,255,255,.66); backdrop-filter: blur(12px);
-      border:1px solid rgba(46,125,50,.16); border-radius:18px;
+      background: linear-gradient(150deg, rgba(255,255,255,.50) 0%, rgba(232,245,233,.32) 60%, rgba(220,237,200,.26) 100%);
+      backdrop-filter: blur(20px) saturate(160%); -webkit-backdrop-filter: blur(20px) saturate(160%);
+      border:1px solid rgba(255,255,255,.62);
+      border-top: 1.5px solid rgba(255,255,255,.88);
+      border-radius:20px;
       padding:22px 26px; margin-bottom:1rem;
-      box-shadow:0 8px 26px rgba(27,94,32,.08);
+      box-shadow:0 10px 34px rgba(27,94,32,.14), inset 0 1px 0 rgba(255,255,255,.55);
       animation: fadeUp .6s ease both;
   }
   .panel h3 { margin-top:0; color:#1b5e20; }
@@ -173,13 +204,83 @@ CSS = """
          background:linear-gradient(120deg,#1b5e20,#43a047); color:#fff; font-weight:600; font-size:.82rem;
          box-shadow:0 4px 12px rgba(27,94,32,.25); }
 
-  [data-testid="stSidebarNav"] { display:none; }  /* we render our own nav via st.navigation */
+  [data-testid="stSidebarNav"] { display:none; }  /* we render our own nav via the topbar */
+
+  /* ---------- sticky top navigation bar ---------- */
+  [data-testid="stHeader"] { background: rgba(252,253,251,.55); backdrop-filter: blur(8px); }
+  .topbar {
+      position: sticky; top: 3.4rem; z-index: 999;
+      display: flex; align-items: center; gap: 6px;
+      background: linear-gradient(120deg, rgba(255,255,255,.60) 0%, rgba(232,245,233,.42) 100%);
+      backdrop-filter: blur(22px) saturate(180%); -webkit-backdrop-filter: blur(22px) saturate(180%);
+      border: 1px solid rgba(255,255,255,.70);
+      border-top: 1.5px solid rgba(255,255,255,.95);
+      border-radius: 16px;
+      padding: 10px 18px; margin-bottom: 14px;
+      box-shadow: 0 10px 30px rgba(27,94,32,.16), inset 0 1px 0 rgba(255,255,255,.6);
+      animation: fadeUp .5s ease both;
+  }
+  .topbar .brand {
+      font-weight: 800; color: #1b5e20 !important; font-size: 1.05rem;
+      margin-right: auto; text-decoration: none !important;
+      display: flex; align-items: center; gap: 8px;
+  }
+  .topbar a.nlink {
+      text-decoration: none !important; color: #2f5136 !important;
+      font-weight: 600; font-size: .9rem; padding: 6px 16px; border-radius: 10px;
+      transition: background .25s ease, color .25s ease, transform .25s ease;
+  }
+  .topbar a.nlink:hover { background: #e8f5e9; transform: translateY(-1px); }
+  .topbar a.nlink.active {
+      background: linear-gradient(120deg, #1b5e20, #43a047);
+      color: #ffffff !important;
+      box-shadow: 0 4px 12px rgba(27,94,32,.30);
+  }
 </style>
 """
 
 
+NAV_ITEMS = [
+    ("overview", "🗺️ Home"),
+    ("districts", "📍 Districts"),
+    ("activity", "📞 Field activity"),
+    ("about", "🌾 About"),
+]
+
+
 def inject_css() -> None:
     st.markdown(CSS, unsafe_allow_html=True)
+
+
+def topbar(active: str) -> None:
+    """Sticky navigation bar shown on every page."""
+    links = "".join(
+        f'<a class="nlink{" active" if path == active else ""}" href="{path}" '
+        f'target="_self">{label}</a>'
+        for path, label in NAV_ITEMS)
+    st.markdown(
+        f"""<div class="topbar">
+              <a class="brand" href="overview" target="_self">🌾 KisaanRaksha</a>
+              {links}
+            </div>""",
+        unsafe_allow_html=True)
+
+
+def back_arrow() -> None:
+    """Small circular button that navigates to the previous page."""
+    import streamlit.components.v1 as components
+    components.html("""
+      <div style="margin:0;padding:0">
+        <button onclick="window.parent.history.back()" title="Go back"
+          style="width:38px;height:38px;border-radius:50%;cursor:pointer;
+                 border:1px solid rgba(46,125,50,.35);
+                 background:rgba(255,255,255,.85);color:#1b5e20;
+                 font-size:18px;font-weight:800;line-height:1;
+                 box-shadow:0 4px 12px rgba(27,94,32,.15);
+                 transition:transform .2s ease, box-shadow .2s ease"
+          onmouseover="this.style.transform='translateX(-3px)';this.style.boxShadow='0 6px 16px rgba(27,94,32,.28)'"
+          onmouseout="this.style.transform='';this.style.boxShadow='0 4px 12px rgba(27,94,32,.15)'">←</button>
+      </div>""", height=46)
 
 
 def hero(title: str, subtitle: str) -> None:

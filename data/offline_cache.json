@@ -10,7 +10,7 @@
    "drought_signal": 0.123,
    "source": "Open-Meteo ERA5 archive (open-meteo.com)",
    "cached": false,
-   "cached_at": "2026-07-07T11:28:42+00:00"
+   "cached_at": "2026-07-07T14:30:07+00:00"
   },
   "Latur": {
    "district": "Latur",
@@ -22,7 +22,7 @@
    "drought_signal": 0.548,
    "source": "Open-Meteo ERA5 archive (open-meteo.com)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:36+00:00"
+   "cached_at": "2026-07-07T14:30:30+00:00"
   },
   "Akola": {
    "district": "Akola",
@@ -34,7 +34,7 @@
    "drought_signal": 0.337,
    "source": "Open-Meteo ERA5 archive (open-meteo.com)",
    "cached": false,
-   "cached_at": "2026-07-07T11:28:42+00:00"
+   "cached_at": "2026-07-07T14:30:07+00:00"
   },
   "Wardha": {
    "district": "Wardha",
@@ -46,7 +46,7 @@
    "drought_signal": 0.273,
    "source": "Open-Meteo ERA5 archive (open-meteo.com)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:00+00:00"
+   "cached_at": "2026-07-07T14:30:19+00:00"
   },
   "Washim": {
    "district": "Washim",
@@ -58,7 +58,7 @@
    "drought_signal": 0.269,
    "source": "Open-Meteo ERA5 archive (open-meteo.com)",
    "cached": false,
-   "cached_at": "2026-07-07T11:28:42+00:00"
+   "cached_at": "2026-07-07T14:30:07+00:00"
   },
   "Nagpur": {
    "district": "Nagpur",
@@ -70,7 +70,7 @@
    "drought_signal": 0.235,
    "source": "Open-Meteo ERA5 archive (open-meteo.com)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:25+00:00"
+   "cached_at": "2026-07-07T14:30:19+00:00"
   },
   "Chhatrapati Sambhajinagar": {
    "district": "Chhatrapati Sambhajinagar",
@@ -82,7 +82,7 @@
    "drought_signal": 0.243,
    "source": "Open-Meteo ERA5 archive (open-meteo.com)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:27+00:00"
+   "cached_at": "2026-07-07T14:30:19+00:00"
   },
   "Jalna": {
    "district": "Jalna",
@@ -94,7 +94,7 @@
    "drought_signal": 0.0,
    "source": "Open-Meteo ERA5 archive (open-meteo.com)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:29+00:00"
+   "cached_at": "2026-07-07T14:30:19+00:00"
   },
   "Beed": {
    "district": "Beed",
@@ -106,7 +106,7 @@
    "drought_signal": 0.693,
    "source": "Open-Meteo ERA5 archive (open-meteo.com)",
    "cached": false,
-   "cached_at": "2026-07-07T11:31:34+00:00"
+   "cached_at": "2026-07-07T14:30:30+00:00"
   },
   "Dharashiv": {
    "district": "Dharashiv",
@@ -118,7 +118,7 @@
    "drought_signal": 0.567,
    "source": "Open-Meteo ERA5 archive (open-meteo.com)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:42+00:00"
+   "cached_at": "2026-07-07T14:30:29+00:00"
   },
   "Buldhana": {
    "district": "Buldhana",
@@ -130,7 +130,7 @@
    "drought_signal": 0.115,
    "source": "Open-Meteo ERA5 archive (open-meteo.com)",
    "cached": false,
-   "cached_at": "2026-07-07T11:28:42+00:00"
+   "cached_at": "2026-07-07T14:30:07+00:00"
   },
   "Yavatmal": {
    "district": "Yavatmal",
@@ -142,7 +142,7 @@
    "drought_signal": 0.365,
    "source": "Open-Meteo ERA5 archive (open-meteo.com)",
    "cached": false,
-   "cached_at": "2026-07-07T11:28:42+00:00"
+   "cached_at": "2026-07-07T14:30:07+00:00"
   },
   "Chandrapur": {
    "district": "Chandrapur",
@@ -154,7 +154,7 @@
    "drought_signal": 0.303,
    "source": "Open-Meteo ERA5 archive (open-meteo.com)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:25+00:00"
+   "cached_at": "2026-07-07T14:30:19+00:00"
   },
   "Nanded": {
    "district": "Nanded",
@@ -166,7 +166,7 @@
    "drought_signal": 0.384,
    "source": "Open-Meteo ERA5 archive (open-meteo.com)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:47+00:00"
+   "cached_at": "2026-07-07T14:30:30+00:00"
   },
   "Parbhani": {
    "district": "Parbhani",
@@ -178,7 +178,7 @@
    "drought_signal": 0.347,
    "source": "Open-Meteo ERA5 archive (open-meteo.com)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:53+00:00"
+   "cached_at": "2026-07-07T14:30:30+00:00"
   },
   "Hingoli": {
    "district": "Hingoli",
@@ -190,7 +190,7 @@
    "drought_signal": 0.0,
    "source": "Open-Meteo ERA5 archive (open-meteo.com)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:54+00:00"
+   "cached_at": "2026-07-07T14:30:37+00:00"
   }
  },
  "ndvi": {
@@ -203,7 +203,7 @@
    "ndvi_signal": 0.77,
    "source": "NASA MODIS MOD13Q1 via ORNL Subsets API (modis.ornl.gov)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:19+00:00"
+   "cached_at": "2026-07-07T14:30:10+00:00"
   },
   "Latur": {
    "district": "Latur",
@@ -214,7 +214,7 @@
    "ndvi_signal": 1.0,
    "source": "NASA MODIS MOD13Q1 via ORNL Subsets API (modis.ornl.gov)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:40+00:00"
+   "cached_at": "2026-07-07T14:30:33+00:00"
   },
   "Yavatmal": {
    "district": "Yavatmal",
@@ -225,7 +225,7 @@
    "ndvi_signal": 0.845,
    "source": "NASA MODIS MOD13Q1 via ORNL Subsets API (modis.ornl.gov)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:19+00:00"
+   "cached_at": "2026-07-07T14:30:11+00:00"
   },
   "Chandrapur": {
    "district": "Chandrapur",
@@ -236,7 +236,7 @@
    "ndvi_signal": 0.939,
    "source": "NASA MODIS MOD13Q1 via ORNL Subsets API (modis.ornl.gov)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:29+00:00"
+   "cached_at": "2026-07-07T14:30:23+00:00"
   },
   "Buldhana": {
    "district": "Buldhana",
@@ -247,7 +247,7 @@
    "ndvi_signal": 0.903,
    "source": "NASA MODIS MOD13Q1 via ORNL Subsets API (modis.ornl.gov)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:20+00:00"
+   "cached_at": "2026-07-07T14:30:11+00:00"
   },
   "Washim": {
    "district": "Washim",
@@ -258,7 +258,7 @@
    "ndvi_signal": 0.942,
    "source": "NASA MODIS MOD13Q1 via ORNL Subsets API (modis.ornl.gov)",
    "cached": false,
-   "cached_at": "2026-07-07T11:28:48+00:00"
+   "cached_at": "2026-07-07T14:30:11+00:00"
   },
   "Akola": {
    "district": "Akola",
@@ -269,7 +269,7 @@
    "ndvi_signal": 0.965,
    "source": "NASA MODIS MOD13Q1 via ORNL Subsets API (modis.ornl.gov)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:20+00:00"
+   "cached_at": "2026-07-07T14:30:11+00:00"
   },
   "Nagpur": {
    "district": "Nagpur",
@@ -280,7 +280,7 @@
    "ndvi_signal": 0.912,
    "source": "NASA MODIS MOD13Q1 via ORNL Subsets API (modis.ornl.gov)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:44+00:00"
+   "cached_at": "2026-07-07T14:30:23+00:00"
   },
   "Wardha": {
    "district": "Wardha",
@@ -291,7 +291,7 @@
    "ndvi_signal": 0.931,
    "source": "NASA MODIS MOD13Q1 via ORNL Subsets API (modis.ornl.gov)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:20+00:00"
+   "cached_at": "2026-07-07T14:30:23+00:00"
   },
   "Hingoli": {
    "district": "Hingoli",
@@ -302,7 +302,7 @@
    "ndvi_signal": 1.0,
    "source": "NASA MODIS MOD13Q1 via ORNL Subsets API (modis.ornl.gov)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:57+00:00"
+   "cached_at": "2026-07-07T14:30:41+00:00"
   },
   "Parbhani": {
    "district": "Parbhani",
@@ -313,7 +313,7 @@
    "ndvi_signal": 0.977,
    "source": "NASA MODIS MOD13Q1 via ORNL Subsets API (modis.ornl.gov)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:57+00:00"
+   "cached_at": "2026-07-07T14:30:34+00:00"
   },
   "Nanded": {
    "district": "Nanded",
@@ -324,7 +324,7 @@
    "ndvi_signal": 0.783,
    "source": "NASA MODIS MOD13Q1 via ORNL Subsets API (modis.ornl.gov)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:51+00:00"
+   "cached_at": "2026-07-07T14:30:33+00:00"
   },
   "Chhatrapati Sambhajinagar": {
    "district": "Chhatrapati Sambhajinagar",
@@ -335,7 +335,7 @@
    "ndvi_signal": 0.967,
    "source": "NASA MODIS MOD13Q1 via ORNL Subsets API (modis.ornl.gov)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:44+00:00"
+   "cached_at": "2026-07-07T14:30:23+00:00"
   },
   "Beed": {
    "district": "Beed",
@@ -346,7 +346,7 @@
    "ndvi_signal": 0.926,
    "source": "NASA MODIS MOD13Q1 via ORNL Subsets API (modis.ornl.gov)",
    "cached": false,
-   "cached_at": "2026-07-07T11:31:38+00:00"
+   "cached_at": "2026-07-07T14:30:33+00:00"
   },
   "Jalna": {
    "district": "Jalna",
@@ -357,7 +357,7 @@
    "ndvi_signal": 0.928,
    "source": "NASA MODIS MOD13Q1 via ORNL Subsets API (modis.ornl.gov)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:35+00:00"
+   "cached_at": "2026-07-07T14:30:23+00:00"
   },
   "Dharashiv": {
    "district": "Dharashiv",
@@ -368,7 +368,7 @@
    "ndvi_signal": 0.881,
    "source": "NASA MODIS MOD13Q1 via ORNL Subsets API (modis.ornl.gov)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:45+00:00"
+   "cached_at": "2026-07-07T14:30:32+00:00"
   }
  },
  "mandi": {
@@ -376,21 +376,77 @@
    "district": "Amravati",
    "crop": "cotton",
    "commodity": "Cotton",
-   "market_price_rs_qtl": 7900.0,
+   "market_price_rs_qtl": 8950.0,
    "msp_rs_qtl": 7710,
    "gap_below_msp_pct": 0.0,
    "price_signal": 0.0,
-   "markets_sampled": 11,
-   "scope": "national",
+   "markets_sampled": 1,
+   "scope": "state",
    "source": "Agmarknet via data.gov.in (Ministry of Agriculture)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:16+00:00"
+   "cached_at": "2026-07-07T14:30:08+00:00"
   },
   "Latur:soybean": {
    "district": "Latur",
    "crop": "soybean",
    "commodity": "Soyabean",
-   "market_price_rs_qtl": 6954.0,
+   "market_price_rs_qtl": 6950.0,
+   "msp_rs_qtl": 5328,
+   "gap_below_msp_pct": 0.0,
+   "price_signal": 0.0,
+   "markets_sampled": 5,
+   "scope": "district",
+   "source": "Agmarknet via data.gov.in (Ministry of Agriculture)",
+   "cached": false,
+   "cached_at": "2026-07-07T14:30:30+00:00"
+  },
+  "Buldhana:cotton": {
+   "district": "Buldhana",
+   "crop": "cotton",
+   "commodity": "Cotton",
+   "market_price_rs_qtl": 8950.0,
+   "msp_rs_qtl": 7710,
+   "gap_below_msp_pct": 0.0,
+   "price_signal": 0.0,
+   "markets_sampled": 1,
+   "scope": "state",
+   "source": "Agmarknet via data.gov.in (Ministry of Agriculture)",
+   "cached": false,
+   "cached_at": "2026-07-07T14:30:08+00:00"
+  },
+  "Chandrapur:cotton": {
+   "district": "Chandrapur",
+   "crop": "cotton",
+   "commodity": "Cotton",
+   "market_price_rs_qtl": 8950.0,
+   "msp_rs_qtl": 7710,
+   "gap_below_msp_pct": 0.0,
+   "price_signal": 0.0,
+   "markets_sampled": 1,
+   "scope": "state",
+   "source": "Agmarknet via data.gov.in (Ministry of Agriculture)",
+   "cached": false,
+   "cached_at": "2026-07-07T14:30:20+00:00"
+  },
+  "Yavatmal:cotton": {
+   "district": "Yavatmal",
+   "crop": "cotton",
+   "commodity": "Cotton",
+   "market_price_rs_qtl": 8950.0,
+   "msp_rs_qtl": 7710,
+   "gap_below_msp_pct": 0.0,
+   "price_signal": 0.0,
+   "markets_sampled": 1,
+   "scope": "state",
+   "source": "Agmarknet via data.gov.in (Ministry of Agriculture)",
+   "cached": false,
+   "cached_at": "2026-07-07T14:30:08+00:00"
+  },
+  "Washim:soybean": {
+   "district": "Washim",
+   "crop": "soybean",
+   "commodity": "Soyabean",
+   "market_price_rs_qtl": 6706.0,
    "msp_rs_qtl": 5328,
    "gap_below_msp_pct": 0.0,
    "price_signal": 0.0,
@@ -398,203 +454,147 @@
    "scope": "district",
    "source": "Agmarknet via data.gov.in (Ministry of Agriculture)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:37+00:00"
-  },
-  "Buldhana:cotton": {
-   "district": "Buldhana",
-   "crop": "cotton",
-   "commodity": "Cotton",
-   "market_price_rs_qtl": 7900.0,
-   "msp_rs_qtl": 7710,
-   "gap_below_msp_pct": 0.0,
-   "price_signal": 0.0,
-   "markets_sampled": 11,
-   "scope": "national",
-   "source": "Agmarknet via data.gov.in (Ministry of Agriculture)",
-   "cached": false,
-   "cached_at": "2026-07-07T11:29:17+00:00"
-  },
-  "Chandrapur:cotton": {
-   "district": "Chandrapur",
-   "crop": "cotton",
-   "commodity": "Cotton",
-   "market_price_rs_qtl": 7900.0,
-   "msp_rs_qtl": 7710,
-   "gap_below_msp_pct": 0.0,
-   "price_signal": 0.0,
-   "markets_sampled": 11,
-   "scope": "national",
-   "source": "Agmarknet via data.gov.in (Ministry of Agriculture)",
-   "cached": false,
-   "cached_at": "2026-07-07T11:29:27+00:00"
-  },
-  "Yavatmal:cotton": {
-   "district": "Yavatmal",
-   "crop": "cotton",
-   "commodity": "Cotton",
-   "market_price_rs_qtl": 7900.0,
-   "msp_rs_qtl": 7710,
-   "gap_below_msp_pct": 0.0,
-   "price_signal": 0.0,
-   "markets_sampled": 11,
-   "scope": "national",
-   "source": "Agmarknet via data.gov.in (Ministry of Agriculture)",
-   "cached": false,
-   "cached_at": "2026-07-07T11:29:16+00:00"
-  },
-  "Washim:soybean": {
-   "district": "Washim",
-   "crop": "soybean",
-   "commodity": "Soyabean",
-   "market_price_rs_qtl": 6950.0,
-   "msp_rs_qtl": 5328,
-   "gap_below_msp_pct": 0.0,
-   "price_signal": 0.0,
-   "markets_sampled": 1,
-   "scope": "district",
-   "source": "Agmarknet via data.gov.in (Ministry of Agriculture)",
-   "cached": false,
-   "cached_at": "2026-07-07T11:28:45+00:00"
+   "cached_at": "2026-07-07T14:30:08+00:00"
   },
   "Akola:cotton": {
    "district": "Akola",
    "crop": "cotton",
    "commodity": "Cotton",
-   "market_price_rs_qtl": 7900.0,
+   "market_price_rs_qtl": 8950.0,
    "msp_rs_qtl": 7710,
    "gap_below_msp_pct": 0.0,
    "price_signal": 0.0,
-   "markets_sampled": 11,
-   "scope": "national",
+   "markets_sampled": 1,
+   "scope": "state",
    "source": "Agmarknet via data.gov.in (Ministry of Agriculture)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:17+00:00"
+   "cached_at": "2026-07-07T14:30:08+00:00"
   },
   "Wardha:cotton": {
    "district": "Wardha",
    "crop": "cotton",
    "commodity": "Cotton",
-   "market_price_rs_qtl": 7900.0,
+   "market_price_rs_qtl": 8950.0,
    "msp_rs_qtl": 7710,
    "gap_below_msp_pct": 0.0,
    "price_signal": 0.0,
-   "markets_sampled": 11,
-   "scope": "national",
+   "markets_sampled": 1,
+   "scope": "state",
    "source": "Agmarknet via data.gov.in (Ministry of Agriculture)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:17+00:00"
+   "cached_at": "2026-07-07T14:30:20+00:00"
   },
   "Nagpur:cotton": {
    "district": "Nagpur",
    "crop": "cotton",
    "commodity": "Cotton",
-   "market_price_rs_qtl": 7900.0,
+   "market_price_rs_qtl": 8950.0,
    "msp_rs_qtl": 7710,
    "gap_below_msp_pct": 0.0,
    "price_signal": 0.0,
-   "markets_sampled": 11,
-   "scope": "national",
+   "markets_sampled": 1,
+   "scope": "state",
    "source": "Agmarknet via data.gov.in (Ministry of Agriculture)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:41+00:00"
+   "cached_at": "2026-07-07T14:30:20+00:00"
   },
   "Hingoli:soybean": {
    "district": "Hingoli",
    "crop": "soybean",
    "commodity": "Soyabean",
-   "market_price_rs_qtl": 6685.0,
+   "market_price_rs_qtl": 6694.0,
    "msp_rs_qtl": 5328,
    "gap_below_msp_pct": 0.0,
    "price_signal": 0.0,
-   "markets_sampled": 31,
+   "markets_sampled": 50,
    "scope": "state",
    "source": "Agmarknet via data.gov.in (Ministry of Agriculture)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:55+00:00"
+   "cached_at": "2026-07-07T14:30:38+00:00"
   },
   "Nanded:cotton": {
    "district": "Nanded",
    "crop": "cotton",
    "commodity": "Cotton",
-   "market_price_rs_qtl": 7900.0,
+   "market_price_rs_qtl": 8950.0,
    "msp_rs_qtl": 7710,
    "gap_below_msp_pct": 0.0,
    "price_signal": 0.0,
-   "markets_sampled": 11,
-   "scope": "national",
+   "markets_sampled": 1,
+   "scope": "state",
    "source": "Agmarknet via data.gov.in (Ministry of Agriculture)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:49+00:00"
+   "cached_at": "2026-07-07T14:30:30+00:00"
   },
   "Parbhani:cotton": {
    "district": "Parbhani",
    "crop": "cotton",
    "commodity": "Cotton",
-   "market_price_rs_qtl": 7900.0,
+   "market_price_rs_qtl": 8950.0,
    "msp_rs_qtl": 7710,
    "gap_below_msp_pct": 0.0,
    "price_signal": 0.0,
-   "markets_sampled": 11,
-   "scope": "national",
+   "markets_sampled": 1,
+   "scope": "state",
    "source": "Agmarknet via data.gov.in (Ministry of Agriculture)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:55+00:00"
+   "cached_at": "2026-07-07T14:30:32+00:00"
   },
   "Chhatrapati Sambhajinagar:cotton": {
    "district": "Chhatrapati Sambhajinagar",
    "crop": "cotton",
    "commodity": "Cotton",
-   "market_price_rs_qtl": 7900.0,
+   "market_price_rs_qtl": 8950.0,
    "msp_rs_qtl": 7710,
    "gap_below_msp_pct": 0.0,
    "price_signal": 0.0,
-   "markets_sampled": 11,
-   "scope": "national",
+   "markets_sampled": 1,
+   "scope": "state",
    "source": "Agmarknet via data.gov.in (Ministry of Agriculture)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:41+00:00"
+   "cached_at": "2026-07-07T14:30:20+00:00"
   },
   "Beed:cotton": {
    "district": "Beed",
    "crop": "cotton",
    "commodity": "Cotton",
-   "market_price_rs_qtl": 7900.0,
+   "market_price_rs_qtl": 8950.0,
    "msp_rs_qtl": 7710,
    "gap_below_msp_pct": 0.0,
    "price_signal": 0.0,
-   "markets_sampled": 11,
-   "scope": "national",
+   "markets_sampled": 1,
+   "scope": "state",
    "source": "Agmarknet via data.gov.in (Ministry of Agriculture)",
    "cached": false,
-   "cached_at": "2026-07-07T11:31:35+00:00"
+   "cached_at": "2026-07-07T14:30:31+00:00"
   },
   "Jalna:cotton": {
    "district": "Jalna",
    "crop": "cotton",
    "commodity": "Cotton",
-   "market_price_rs_qtl": 7900.0,
+   "market_price_rs_qtl": 8950.0,
    "msp_rs_qtl": 7710,
    "gap_below_msp_pct": 0.0,
    "price_signal": 0.0,
-   "markets_sampled": 11,
-   "scope": "national",
+   "markets_sampled": 1,
+   "scope": "state",
    "source": "Agmarknet via data.gov.in (Ministry of Agriculture)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:32+00:00"
+   "cached_at": "2026-07-07T14:30:20+00:00"
   },
   "Dharashiv:soybean": {
    "district": "Dharashiv",
    "crop": "soybean",
    "commodity": "Soyabean",
-   "market_price_rs_qtl": 6718.0,
+   "market_price_rs_qtl": 6636.0,
    "msp_rs_qtl": 5328,
    "gap_below_msp_pct": 0.0,
    "price_signal": 0.0,
-   "markets_sampled": 2,
+   "markets_sampled": 3,
    "scope": "district",
    "source": "Agmarknet via data.gov.in (Ministry of Agriculture)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:42+00:00"
+   "cached_at": "2026-07-07T14:30:29+00:00"
   }
  },
  "fsi": {
@@ -614,7 +614,7 @@
     "price": {
      "value": 0.0,
      "gap_below_msp_pct": 0.0,
-     "market_price": 7900.0,
+     "market_price": 8950.0,
      "msp": 7710,
      "cached": false
     },
@@ -627,7 +627,7 @@
    },
    "model": "LightGBM (model/risk_model.pkl)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:19+00:00"
+   "cached_at": "2026-07-07T14:30:14+00:00"
   },
   "Latur:soybean": {
    "district": "Latur",
@@ -645,7 +645,7 @@
     "price": {
      "value": 0.0,
      "gap_below_msp_pct": 0.0,
-     "market_price": 6954.0,
+     "market_price": 6950.0,
      "msp": 5328,
      "cached": false
     },
@@ -658,7 +658,7 @@
    },
    "model": "LightGBM (model/risk_model.pkl)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:40+00:00"
+   "cached_at": "2026-07-07T14:30:33+00:00"
   },
   "Washim:soybean": {
    "district": "Washim",
@@ -676,7 +676,7 @@
     "price": {
      "value": 0.0,
      "gap_below_msp_pct": 0.0,
-     "market_price": 6950.0,
+     "market_price": 6706.0,
      "msp": 5328,
      "cached": false
     },
@@ -689,7 +689,7 @@
    },
    "model": "LightGBM (model/risk_model.pkl)",
    "cached": false,
-   "cached_at": "2026-07-07T11:28:52+00:00"
+   "cached_at": "2026-07-07T14:30:14+00:00"
   },
   "Wardha:cotton": {
    "district": "Wardha",
@@ -707,7 +707,7 @@
     "price": {
      "value": 0.0,
      "gap_below_msp_pct": 0.0,
-     "market_price": 7900.0,
+     "market_price": 8950.0,
      "msp": 7710,
      "cached": false
     },
@@ -720,7 +720,7 @@
    },
    "model": "LightGBM (model/risk_model.pkl)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:20+00:00"
+   "cached_at": "2026-07-07T14:30:23+00:00"
   },
   "Nagpur:cotton": {
    "district": "Nagpur",
@@ -738,7 +738,7 @@
     "price": {
      "value": 0.0,
      "gap_below_msp_pct": 0.0,
-     "market_price": 7900.0,
+     "market_price": 8950.0,
      "msp": 7710,
      "cached": false
     },
@@ -751,7 +751,7 @@
    },
    "model": "LightGBM (model/risk_model.pkl)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:44+00:00"
+   "cached_at": "2026-07-07T14:30:23+00:00"
   },
   "Akola:cotton": {
    "district": "Akola",
@@ -769,7 +769,7 @@
     "price": {
      "value": 0.0,
      "gap_below_msp_pct": 0.0,
-     "market_price": 7900.0,
+     "market_price": 8950.0,
      "msp": 7710,
      "cached": false
     },
@@ -782,7 +782,7 @@
    },
    "model": "LightGBM (model/risk_model.pkl)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:20+00:00"
+   "cached_at": "2026-07-07T14:30:14+00:00"
   },
   "Chhatrapati Sambhajinagar:cotton": {
    "district": "Chhatrapati Sambhajinagar",
@@ -800,7 +800,7 @@
     "price": {
      "value": 0.0,
      "gap_below_msp_pct": 0.0,
-     "market_price": 7900.0,
+     "market_price": 8950.0,
      "msp": 7710,
      "cached": false
     },
@@ -813,7 +813,7 @@
    },
    "model": "LightGBM (model/risk_model.pkl)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:44+00:00"
+   "cached_at": "2026-07-07T14:30:23+00:00"
   },
   "Beed:cotton": {
    "district": "Beed",
@@ -831,7 +831,7 @@
     "price": {
      "value": 0.0,
      "gap_below_msp_pct": 0.0,
-     "market_price": 7900.0,
+     "market_price": 8950.0,
      "msp": 7710,
      "cached": false
     },
@@ -844,7 +844,7 @@
    },
    "model": "LightGBM (model/risk_model.pkl)",
    "cached": false,
-   "cached_at": "2026-07-07T11:31:38+00:00"
+   "cached_at": "2026-07-07T14:30:33+00:00"
   },
   "Jalna:cotton": {
    "district": "Jalna",
@@ -862,7 +862,7 @@
     "price": {
      "value": 0.0,
      "gap_below_msp_pct": 0.0,
-     "market_price": 7900.0,
+     "market_price": 8950.0,
      "msp": 7710,
      "cached": false
     },
@@ -875,7 +875,7 @@
    },
    "model": "LightGBM (model/risk_model.pkl)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:35+00:00"
+   "cached_at": "2026-07-07T14:30:23+00:00"
   },
   "Dharashiv:soybean": {
    "district": "Dharashiv",
@@ -893,7 +893,7 @@
     "price": {
      "value": 0.0,
      "gap_below_msp_pct": 0.0,
-     "market_price": 6718.0,
+     "market_price": 6636.0,
      "msp": 5328,
      "cached": false
     },
@@ -906,7 +906,7 @@
    },
    "model": "LightGBM (model/risk_model.pkl)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:45+00:00"
+   "cached_at": "2026-07-07T14:30:32+00:00"
   },
   "Buldhana:cotton": {
    "district": "Buldhana",
@@ -924,7 +924,7 @@
     "price": {
      "value": 0.0,
      "gap_below_msp_pct": 0.0,
-     "market_price": 7900.0,
+     "market_price": 8950.0,
      "msp": 7710,
      "cached": false
     },
@@ -937,7 +937,7 @@
    },
    "model": "LightGBM (model/risk_model.pkl)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:20+00:00"
+   "cached_at": "2026-07-07T14:30:14+00:00"
   },
   "Yavatmal:cotton": {
    "district": "Yavatmal",
@@ -955,7 +955,7 @@
     "price": {
      "value": 0.0,
      "gap_below_msp_pct": 0.0,
-     "market_price": 7900.0,
+     "market_price": 8950.0,
      "msp": 7710,
      "cached": false
     },
@@ -968,7 +968,7 @@
    },
    "model": "LightGBM (model/risk_model.pkl)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:19+00:00"
+   "cached_at": "2026-07-07T14:30:14+00:00"
   },
   "Chandrapur:cotton": {
    "district": "Chandrapur",
@@ -986,7 +986,7 @@
     "price": {
      "value": 0.0,
      "gap_below_msp_pct": 0.0,
-     "market_price": 7900.0,
+     "market_price": 8950.0,
      "msp": 7710,
      "cached": false
     },
@@ -999,7 +999,7 @@
    },
    "model": "LightGBM (model/risk_model.pkl)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:29+00:00"
+   "cached_at": "2026-07-07T14:30:23+00:00"
   },
   "Nanded:cotton": {
    "district": "Nanded",
@@ -1017,7 +1017,7 @@
     "price": {
      "value": 0.0,
      "gap_below_msp_pct": 0.0,
-     "market_price": 7900.0,
+     "market_price": 8950.0,
      "msp": 7710,
      "cached": false
     },
@@ -1030,7 +1030,7 @@
    },
    "model": "LightGBM (model/risk_model.pkl)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:51+00:00"
+   "cached_at": "2026-07-07T14:30:33+00:00"
   },
   "Parbhani:cotton": {
    "district": "Parbhani",
@@ -1048,7 +1048,7 @@
     "price": {
      "value": 0.0,
      "gap_below_msp_pct": 0.0,
-     "market_price": 7900.0,
+     "market_price": 8950.0,
      "msp": 7710,
      "cached": false
     },
@@ -1061,7 +1061,7 @@
    },
    "model": "LightGBM (model/risk_model.pkl)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:57+00:00"
+   "cached_at": "2026-07-07T14:30:34+00:00"
   },
   "Hingoli:soybean": {
    "district": "Hingoli",
@@ -1079,7 +1079,7 @@
     "price": {
      "value": 0.0,
      "gap_below_msp_pct": 0.0,
-     "market_price": 6685.0,
+     "market_price": 6694.0,
      "msp": 5328,
      "cached": false
     },
@@ -1092,7 +1092,7 @@
    },
    "model": "LightGBM (model/risk_model.pkl)",
    "cached": false,
-   "cached_at": "2026-07-07T11:29:57+00:00"
+   "cached_at": "2026-07-07T14:30:41+00:00"
   }
  }
 }

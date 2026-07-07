@@ -25,6 +25,9 @@ nav = st.navigation([
     st.Page(about_page.render, title="About", icon="🌾", url_path="about"),
 ])
 
+ui.topbar(getattr(nav, "url_path", "overview"))
+ui.back_arrow()
+
 with st.sidebar:
     st.markdown("### 🌾 KisaanRaksha")
     st.caption("Officer command centre")

@@ -139,7 +139,7 @@ const doc = new Document({
           children: [new TextRun({ text: "SDG 2 · Zero Hunger      SDG 3 · Good Health & Well-Being      SDG 10 · Reduced Inequalities", bold: true, size: 22, color: MIDGREEN, font: "Calibri" })] }),
         spacer(700),
         new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 80 },
-          children: [new TextRun({ text: "Team:  Sahil Karande  ·  [Teammate Name]", size: 24, color: DARK, font: "Calibri", bold: true })] }),
+          children: [new TextRun({ text: "Team:  Sahil Karande  ·  Pranav Shripannavar", size: 24, color: DARK, font: "Calibri", bold: true })] }),
         new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 80 },
           children: [new TextRun({ text: "GitHub: github.com/sahilkarande0918-cmd/Kisan-Raksha-project", size: 22, color: MIDGREEN, font: "Calibri" })] }),
         new Paragraph({ alignment: AlignmentType.CENTER,
@@ -370,7 +370,7 @@ const doc = new Document({
         h1("10.  Team, Repository & Declaration"),
         table(["Item", "Detail"],
           [
-            ["Team", "Sahil Karande · [Teammate Name] — 2 members"],
+            ["Team", "Sahil Karande · Pranav Shripannavar — 2 members"],
             ["Repository", "github.com/sahilkarande0918-cmd/Kisan-Raksha-project"],
             ["Stack", "Python · FastMCP · FastAPI · LightGBM · Fairlearn · ASR: Whisper large-v3 in production demo, AI4Bharat IndicConformer as implemented offline backend · Twilio WhatsApp · Streamlit · SQLite"],
             ["Custom dataset", "dataset/maharashtra_ag_stress_dataset.csv — flagged for IEEE Dataport"],
