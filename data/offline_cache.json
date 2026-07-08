@@ -4,13 +4,13 @@
    "district": "Amravati",
    "region": "Vidarbha",
    "window_days": 30,
-   "rainfall_mm": 141.7,
-   "baseline_mm": 161.5,
-   "deficit_pct": 12.3,
-   "drought_signal": 0.123,
+   "rainfall_mm": 151.4,
+   "baseline_mm": 165.7,
+   "deficit_pct": 8.6,
+   "drought_signal": 0.086,
    "source": "Open-Meteo ERA5 archive (open-meteo.com)",
    "cached": false,
-   "cached_at": "2026-07-07T15:02:34+00:00"
+   "cached_at": "2026-07-08T11:52:21+00:00"
   },
   "Latur": {
    "district": "Latur",
@@ -203,7 +203,7 @@
    "ndvi_signal": 0.77,
    "source": "NASA MODIS MOD13Q1 via ORNL Subsets API (modis.ornl.gov)",
    "cached": false,
-   "cached_at": "2026-07-07T15:02:37+00:00"
+   "cached_at": "2026-07-08T11:52:25+00:00"
   },
   "Latur": {
    "district": "Latur",
@@ -376,15 +376,15 @@
    "district": "Amravati",
    "crop": "cotton",
    "commodity": "Cotton",
-   "market_price_rs_qtl": 8950.0,
+   "market_price_rs_qtl": 8150.0,
    "msp_rs_qtl": 7710,
    "gap_below_msp_pct": 0.0,
    "price_signal": 0.0,
-   "markets_sampled": 1,
-   "scope": "state",
+   "markets_sampled": 8,
+   "scope": "national",
    "source": "Agmarknet via data.gov.in (Ministry of Agriculture)",
    "cached": false,
-   "cached_at": "2026-07-07T15:02:35+00:00"
+   "cached_at": "2026-07-08T11:52:22+00:00"
   },
   "Latur:soybean": {
    "district": "Latur",

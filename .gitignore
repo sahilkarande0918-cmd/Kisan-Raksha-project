@@ -16,6 +16,10 @@ venv/
 *.sqlite3
 .ipynb_checkpoints/
 
+# generated claim PDFs (fonts under assets/ stay tracked)
+data/claims/
+data/public_files/
+
 # OS / editor
 .DS_Store
 Thumbs.db

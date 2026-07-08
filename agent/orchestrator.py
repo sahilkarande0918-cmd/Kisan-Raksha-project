@@ -72,14 +72,15 @@ async def run_agent(user_message: str, phone: str = "unknown") -> dict:
     """One full agent turn: memory -> tool loop -> Marathi reply -> memory."""
     history = memory.get_farmer_history(phone)
     client = Groq(api_key=get_env("GROQ_API_KEY"))
-    actions, last_fsi = [], {}
+    actions, last_fsi, last_claim = [], {}, {}
+    lang = _detect_language(user_message)  # reused for reply + PDF covering text
 
     async with Client(mcp) as mcp_client:
         tools = _mcp_tools_to_openai(await mcp_client.list_tools())
         messages = [
             {"role": "system", "content": SYSTEM},
             {"role": "system", "content": f"Farmer memory (from get_farmer_history): {json.dumps(history, ensure_ascii=False)}"},
-            {"role": "system", "content": f"IMPORTANT: the farmer wrote in {_detect_language(user_message)}. Your FINAL reply MUST be in {_detect_language(user_message)}."},
+            {"role": "system", "content": f"IMPORTANT: the farmer wrote in {lang}. Your FINAL reply MUST be in {lang}."},
             {"role": "user", "content": user_message},
         ]
         for _ in range(MAX_TURNS):
@@ -109,6 +110,7 @@ async def run_agent(user_message: str, phone: str = "unknown") -> dict:
                     last_fsi = payload
                 if tc.function.name == "draft_pmfby_claim" and isinstance(payload, dict) \
                         and payload.get("claim_letter_marathi"):
+                    last_claim = payload
                     memory.log_claim(phone, payload["evidence"]["district"],
                                      last_fsi.get("crop", "cotton"),
                                      payload["claim_letter_marathi"])
@@ -123,7 +125,9 @@ async def run_agent(user_message: str, phone: str = "unknown") -> dict:
         last_fsi.get("crop") or history.get("crop"),
         last_fsi.get("fsi"), last_fsi.get("level"), actions)
     return {"reply": reply, "actions": actions, "fsi": last_fsi.get("fsi"),
-            "level": last_fsi.get("level")}
+            "level": last_fsi.get("level"), "language": lang,
+            "claim": last_claim or None,
+            "simulation": bool(last_fsi.get("mode"))}
 
 
 def run_agent_sync(user_message: str, phone: str = "unknown") -> dict:

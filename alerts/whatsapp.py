@@ -17,8 +17,12 @@ def _client():
     return Client(get_env("TWILIO_ACCOUNT_SID"), get_env("TWILIO_AUTH_TOKEN"))
 
 
-def send_whatsapp(to: str, body: str) -> dict:
-    """Send a WhatsApp message via Twilio sandbox. `to` = E.164 number."""
+def send_whatsapp(to: str, body: str, media_url: str | None = None) -> dict:
+    """Send a WhatsApp message via Twilio sandbox. `to` = E.164 number.
+
+    If media_url is given, the first message carries the media attachment
+    (Twilio fetches it from that public URL); remaining text is chunked.
+    """
     if not to:
         return {"error": "no destination number configured"}
     to = to if to.startswith("whatsapp:") else f"whatsapp:{to}"
@@ -26,10 +30,14 @@ def send_whatsapp(to: str, body: str) -> dict:
     client = _client()
     sids = []
     chunks = [body[i:i + MAX_LEN] for i in range(0, len(body), MAX_LEN)] or [""]
-    for chunk in chunks:
-        msg = client.messages.create(from_=sender, to=to, body=chunk)
+    for i, chunk in enumerate(chunks):
+        kwargs = {"from_": sender, "to": to, "body": chunk}
+        if media_url and i == 0:
+            kwargs["media_url"] = [media_url]
+        msg = client.messages.create(**kwargs)
         sids.append(msg.sid)
-    return {"sent": True, "to": to, "message_sids": sids, "chunks": len(chunks)}
+    return {"sent": True, "to": to, "message_sids": sids, "chunks": len(chunks),
+            "media": bool(media_url)}
 
 
 def format_officer_alert(fsi_result: dict, farmer_contact: str = "") -> str:
