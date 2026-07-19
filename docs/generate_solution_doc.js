@@ -1,6 +1,7 @@
 // KisaanRaksha — Round 1 Solution Document generator (Hack4Humanity 2026)
+// Condensed edition with flow diagrams + embedded live-demo screenshots.
 const {
-  AlignmentType, BorderStyle, Document, Footer, HeadingLevel, LevelFormat,
+  AlignmentType, BorderStyle, Document, Footer, HeadingLevel, ImageRun, LevelFormat,
   PageBreak, Packer, Paragraph, ShadingType, Table, TableCell, TableOfContents,
   TableRow, TextRun, WidthType, PageNumber, VerticalAlign,
 } = require("docx");
@@ -10,7 +11,7 @@ const GREEN = "1B5E20", MIDGREEN = "2E7D32", DARK = "212121", GRAY = "616161",
   LIGHT = "E8F5E9", AMBER = "E65100", RED = "B71C1C", HDRBG = "1B5E20";
 
 const p = (text, opts = {}) => new Paragraph({
-  spacing: { after: opts.after ?? 160, before: opts.before ?? 0 },
+  spacing: { after: opts.after ?? 140, before: opts.before ?? 0 },
   alignment: opts.align,
   children: [new TextRun({
     text, bold: opts.bold, italics: opts.italics, size: opts.size ?? 22,
@@ -19,26 +20,26 @@ const p = (text, opts = {}) => new Paragraph({
 });
 
 const rich = (runs, opts = {}) => new Paragraph({
-  spacing: { after: opts.after ?? 160, before: opts.before ?? 0 },
+  spacing: { after: opts.after ?? 140, before: opts.before ?? 0 },
   alignment: opts.align,
   children: runs.map(r => new TextRun({ font: "Calibri", size: r.size ?? 22, ...r })),
 });
 
 const h1 = (text) => new Paragraph({
-  heading: HeadingLevel.HEADING_1, spacing: { before: 360, after: 200 },
+  heading: HeadingLevel.HEADING_1, spacing: { before: 300, after: 160 },
   children: [new TextRun({ text, bold: true, size: 32, color: GREEN, font: "Calibri" })],
 });
 const h2 = (text) => new Paragraph({
-  heading: HeadingLevel.HEADING_2, spacing: { before: 280, after: 160 },
+  heading: HeadingLevel.HEADING_2, spacing: { before: 220, after: 120 },
   children: [new TextRun({ text, bold: true, size: 26, color: MIDGREEN, font: "Calibri" })],
 });
 
 const bullet = (text, opts = {}) => new Paragraph({
-  numbering: { reference: "bullets", level: 0 }, spacing: { after: 100 },
+  numbering: { reference: "bullets", level: 0 }, spacing: { after: 80 },
   children: [new TextRun({ text, size: 22, font: "Calibri", bold: opts.bold, color: opts.color ?? DARK })],
 });
 const bulletRich = (runs) => new Paragraph({
-  numbering: { reference: "bullets", level: 0 }, spacing: { after: 100 },
+  numbering: { reference: "bullets", level: 0 }, spacing: { after: 80 },
   children: runs.map(r => new TextRun({ font: "Calibri", size: 22, ...r })),
 });
 
@@ -52,7 +53,7 @@ function table(headers, rows, colWidths) {
     width: { size: colWidths[i], type: WidthType.DXA },
     verticalAlign: VerticalAlign.CENTER,
     shading: header ? { type: ShadingType.CLEAR, fill: HDRBG } : undefined,
-    margins: { top: 60, bottom: 60, left: 110, right: 110 },
+    margins: { top: 50, bottom: 50, left: 110, right: 110 },
     children: [Array.isArray(content) ? content[0] : cellP(String(content), header
       ? { bold: true, color: "FFFFFF", size: 20 } : {})],
   });
@@ -60,22 +61,15 @@ function table(headers, rows, colWidths) {
     width: { size: total, type: WidthType.DXA }, columnWidths: colWidths,
     rows: [
       new TableRow({ tableHeader: true, children: headers.map((h, i) => mkCell(h, i, true)) }),
-      ...rows.map((r, ri) => new TableRow({
-        children: r.map((c, i) => {
-          const cell = mkCell(c, i);
-          if (ri % 2 === 1) cell.root[0].root.push(); // zebra handled below instead
-          return cell;
-        }),
-      })),
+      ...rows.map((r) => new TableRow({ children: r.map((c, i) => mkCell(c, i)) })),
     ],
   });
 }
 
-// simple key stat callout
 const stat = (big, label) => new TableCell({
   width: { size: 3120, type: WidthType.DXA }, verticalAlign: VerticalAlign.CENTER,
   shading: { type: ShadingType.CLEAR, fill: LIGHT },
-  margins: { top: 140, bottom: 140, left: 120, right: 120 },
+  margins: { top: 130, bottom: 130, left: 120, right: 120 },
   children: [
     new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 40 },
       children: [new TextRun({ text: big, bold: true, size: 40, color: GREEN, font: "Calibri" })] }),
@@ -84,37 +78,67 @@ const stat = (big, label) => new TableCell({
   ],
 });
 
-const spacer = (h = 120) => new Paragraph({ spacing: { after: h }, children: [] });
+const spacer = (h = 100) => new Paragraph({ spacing: { after: h }, children: [] });
 
-const flowBox = (title, sub) => new TableCell({
-  width: { size: 1872, type: WidthType.DXA }, verticalAlign: VerticalAlign.CENTER,
-  shading: { type: ShadingType.CLEAR, fill: LIGHT },
-  margins: { top: 100, bottom: 100, left: 80, right: 80 },
+// ---- flow-diagram building blocks ----
+const flowBox = (title, sub, w = 1872, fill = LIGHT, tcolor = GREEN) => new TableCell({
+  width: { size: w, type: WidthType.DXA }, verticalAlign: VerticalAlign.CENTER,
+  shading: { type: ShadingType.CLEAR, fill },
+  margins: { top: 90, bottom: 90, left: 70, right: 70 },
   children: [
-    new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 30 },
-      children: [new TextRun({ text: title, bold: true, size: 19, color: GREEN, font: "Calibri" })] }),
+    new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 24 },
+      children: [new TextRun({ text: title, bold: true, size: 18, color: tcolor, font: "Calibri" })] }),
     new Paragraph({ alignment: AlignmentType.CENTER,
-      children: [new TextRun({ text: sub, size: 16, color: GRAY, font: "Calibri" })] }),
+      children: [new TextRun({ text: sub, size: 15, color: GRAY, font: "Calibri" })] }),
   ],
 });
-const arrowCell = () => new TableCell({
-  width: { size: 468, type: WidthType.DXA }, verticalAlign: VerticalAlign.CENTER,
-  margins: { top: 100, bottom: 100 },
+const arrowCell = (w = 360, ch = "→") => new TableCell({
+  width: { size: w, type: WidthType.DXA }, verticalAlign: VerticalAlign.CENTER,
+  margins: { top: 90, bottom: 90 },
   children: [new Paragraph({ alignment: AlignmentType.CENTER,
-    children: [new TextRun({ text: "→", bold: true, size: 28, color: MIDGREEN, font: "Calibri" })] })],
+    children: [new TextRun({ text: ch, bold: true, size: 26, color: MIDGREEN, font: "Calibri" })] })],
+});
+const flowRow = (cells, widths) => new Table({
+  width: { size: widths.reduce((a, b) => a + b, 0), type: WidthType.DXA },
+  columnWidths: widths, rows: [new TableRow({ children: cells })],
 });
 
+// ---- image embedding (screenshots) with graceful placeholder ----
+function pngSize(buf) { return { w: buf.readUInt32BE(16), h: buf.readUInt32BE(20) }; }
+function screenshot(path, maxW = 560, maxH = 430) {
+  if (fs.existsSync(path)) {
+    const buf = fs.readFileSync(path);
+    const { w, h } = pngSize(buf);
+    let W = maxW, H = Math.round(maxW * h / w);
+    if (H > maxH) { H = maxH; W = Math.round(maxH * w / h); }
+    return new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 40 },
+      border: { top: { style: BorderStyle.SINGLE, size: 6, color: "CCCCCC" },
+                bottom: { style: BorderStyle.SINGLE, size: 6, color: "CCCCCC" },
+                left: { style: BorderStyle.SINGLE, size: 6, color: "CCCCCC" },
+                right: { style: BorderStyle.SINGLE, size: 6, color: "CCCCCC" } },
+      children: [new ImageRun({ data: buf, type: "png", transformation: { width: W, height: H } })] });
+  }
+  // fallback: labelled placeholder box so the doc still builds
+  return new Table({ width: { size: 9360, type: WidthType.DXA }, columnWidths: [9360],
+    rows: [new TableRow({ children: [new TableCell({
+      width: { size: 9360, type: WidthType.DXA },
+      margins: { top: 400, bottom: 400, left: 200, right: 200 },
+      shading: { type: ShadingType.CLEAR, fill: "F2F2F2" },
+      children: [new Paragraph({ alignment: AlignmentType.CENTER,
+        children: [new TextRun({ text: `[ screenshot pending: ${path} ]`, italics: true, color: GRAY, size: 20, font: "Calibri" })] })],
+    })] })] });
+}
+const caption = (text) => new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 160 },
+  children: [new TextRun({ text, italics: true, size: 17, color: GRAY, font: "Calibri" })] });
+
+const CRIT_IMG = "docs/assets/demo_critical.png";
+const CALM_IMG = "docs/assets/demo_calm.png";
+
 const doc = new Document({
-  numbering: {
-    config: [{
-      reference: "bullets",
-      levels: [{ level: 0, format: LevelFormat.BULLET, text: "•", alignment: AlignmentType.LEFT,
-        style: { paragraph: { indent: { left: 360, hanging: 200 } } } }],
-    }],
-  },
-  styles: {
-    default: { document: { run: { font: "Calibri", size: 22, color: DARK } } },
-  },
+  numbering: { config: [{ reference: "bullets", levels: [{ level: 0, format: LevelFormat.BULLET,
+    text: "•", alignment: AlignmentType.LEFT,
+    style: { paragraph: { indent: { left: 360, hanging: 200 } } } }] }] },
+  styles: { default: { document: { run: { font: "Calibri", size: 22, color: DARK } } } },
   features: { updateFields: true },
   sections: [
     // ---------- COVER ----------
@@ -164,31 +188,29 @@ const doc = new Document({
         // ===== 1 PROBLEM =====
         h1("1.  The Problem — A Farmer Dies Every 3 Hours"),
         rich([
-          { text: "Maharashtra loses a farmer to suicide every 3 hours (2025 state data). In 2024, " },
+          { text: "Maharashtra loses a farmer to suicide every 3 hours. In 2024, " },
           { text: "2,706 farmers died in Vidarbha and Marathwada alone", bold: true, color: RED },
-          { text: " — and of those cases, only 1,563 were even deemed eligible for government aid." },
+          { text: " — only 1,563 were even deemed eligible for aid. State response is entirely reactive: ex-gratia compensation paid after a death, with zero predictive infrastructure." },
         ]),
-        p("The system's failure is structural: every rupee of state response is reactive — ex-gratia compensation paid to a family after a death. There is zero predictive infrastructure. Yet the crisis that ends in suicide follows a well-documented, measurable pattern that builds over months:"),
-        bullet("A failed monsoon (rainfall deficit) destroys the kharif crop,"),
-        bullet("mandi prices fall below MSP just when the farmer must sell,"),
-        bullet("and the crop-loan repayment deadline arrives with nothing to pay it."),
+        p("Yet the crisis follows a measurable pattern that builds over months:"),
+        bullet("A failed monsoon (rainfall deficit) destroys the kharif crop;"),
+        bullet("mandi prices fall below MSP just when the farmer must sell;"),
+        bullet("the crop-loan repayment deadline arrives with nothing to pay it."),
         rich([
-          { text: "Every one of those signals is publicly observable in real time — rainfall from weather archives, prices from Agmarknet, crop health from satellites, repayment windows from the crop calendar. " },
+          { text: "Each signal is publicly observable in real time — rainfall archives, Agmarknet prices, satellite crop health, the crop calendar. " },
           { text: "The data to see the crisis coming already exists. Nobody is looking.", bold: true },
         ]),
-        h2("1.1  Our north star beneficiary"),
         rich([
-          { text: "A cotton farmer in Amravati taluka with 2 acres, a ₹1.2 lakh crop loan, a feature phone running WhatsApp, and Marathi as his only fluent language. ", italics: true },
-          { text: "Every design decision in KisaanRaksha traces back to whether it works for him: voice-first (literacy-independent), Marathi-first, WhatsApp (no new app), and offline-tolerant infrastructure on the government side.", italics: true },
+          { text: "North-star beneficiary: ", bold: true, color: MIDGREEN },
+          { text: "a 2-acre cotton farmer in Amravati with a ₹1.2 lakh crop loan, a WhatsApp feature phone, and Marathi as his only fluent language. Every design choice traces back to him — voice-first, Marathi-first, no new app, offline-tolerant.", italics: true },
         ]),
         spacer(),
 
         // ===== 2 SOLUTION =====
-        h1("2.  The Solution — Predict, Alert, Assist"),
-        p("KisaanRaksha is an agentic AI early-warning system with three jobs:", { bold: true }),
-        bulletRich([{ text: "PREDICT — ", bold: true, color: GREEN }, { text: "a LightGBM model fuses four live signals into a Financial Stress Index (FSI, 0–100) per district. FSI > 75 = critical." }]),
-        bulletRich([{ text: "ALERT — ", bold: true, color: AMBER }, { text: "when FSI crosses critical, the duty agriculture officer receives a WhatsApp alert with the evidence: deficit %, price gap, satellite NDVI, farmers in repayment window — before a crisis, not after a death." }]),
-        bulletRich([{ text: "ASSIST — ", bold: true, color: MIDGREEN }, { text: "the farmer talks to the system in Marathi voice notes on WhatsApp; it answers in Marathi with grounded numbers and auto-drafts his PMFBY crop-insurance claim letter, evidence attached." }]),
+        h1("2.  The Solution — Predict · Alert · Assist"),
+        bulletRich([{ text: "PREDICT — ", bold: true, color: GREEN }, { text: "a LightGBM model fuses four live signals into a Financial Stress Index (FSI 0–100) per district; FSI > 75 = critical." }]),
+        bulletRich([{ text: "ALERT — ", bold: true, color: AMBER }, { text: "on a critical FSI the duty officer gets a WhatsApp alert with the evidence — deficit %, price gap, NDVI — before a crisis, not after a death." }]),
+        bulletRich([{ text: "ASSIST — ", bold: true, color: MIDGREEN }, { text: "the farmer sends a Marathi voice note (or text) on WhatsApp — no app, no typing, no English — and receives a grounded reply plus an auto-drafted PMFBY insurance-claim letter." }]),
         spacer(60),
         new Table({ width: { size: 9360, type: WidthType.DXA }, columnWidths: [3120, 3120, 3120],
           rows: [new TableRow({ children: [
@@ -200,171 +222,165 @@ const doc = new Document({
 
         // ===== 3 ARCHITECTURE =====
         h1("3.  Architecture — Custom MCP Server, No Bare LLM Calls"),
-        p("The system implements the track's reference pattern (onboarding slide 7) end-to-end: every fact the agent states comes from a role-scoped MCP tool grounded in a real dataset — the LLM never answers from its training data."),
-        new Table({ width: { size: 9360, type: WidthType.DXA },
-          columnWidths: [1872, 468, 1872, 468, 1872, 468, 1872, 468],
-          rows: [new TableRow({ children: [
-            flowBox("End User", "Farmer — WhatsApp Marathi voice"),
-            arrowCell(),
-            flowBox("Agent / LLM", "tool-calling loop (Groq Llama-3.3 / Gemini)"),
-            arrowCell(),
-            flowBox("MCP Server", "FastMCP — 7 role-scoped tools"),
-            arrowCell(),
-            flowBox("Grounded Data", "Open-Meteo · Agmarknet · NASA MODIS"),
-            new TableCell({ width: { size: 468, type: WidthType.DXA }, children: [new Paragraph({ children: [] })] }),
-          ] })] }),
+        p("Every fact the agent states comes from a role-scoped MCP tool grounded in a real dataset — the LLM never answers from training data (track slide 7)."),
+        flowRow([
+          flowBox("Farmer", "WhatsApp Marathi voice"), arrowCell(),
+          flowBox("Agent / LLM", "tool-calling loop (Groq / Gemini)"), arrowCell(),
+          flowBox("MCP Server", "FastMCP — 7 role-scoped tools"), arrowCell(),
+          flowBox("Grounded Data", "Open-Meteo · Agmarknet · NASA MODIS"),
+        ], [1872, 360, 1872, 360, 1872, 360, 2064]),
         spacer(60),
-        p("Inbound: Twilio WhatsApp Sandbox → FastAPI webhook → Whisper large-v3 ASR (Marathi/Hindi auto-detect) → agent. Outbound: Twilio sender for farmer replies, officer alerts, and claim letters. A Streamlit choropleth dashboard gives district officers the live FSI heatmap."),
+        p("Inbound: Twilio WhatsApp → FastAPI webhook → Whisper large-v3 ASR (Marathi/Hindi auto-detect) → agent. Outbound: Twilio for farmer replies, officer alerts and claim PDFs. A Streamlit choropleth gives officers the live FSI heatmap."),
         h2("3.1  The seven MCP tools"),
         table(["Tool", "One clear job", "Grounding"],
           [
-            ["query_weather_signal", "30-day rainfall deficit vs 5-yr baseline → drought signal", "Open-Meteo ERA5 archive"],
-            ["query_mandi_prices", "median mandi price vs MSP → price-stress signal", "Agmarknet via data.gov.in"],
-            ["query_ndvi_signal", "satellite crop-health → vegetation-stress signal", "NASA MODIS MOD13Q1 (ORNL)"],
-            ["compute_fsi", "fuse 4 signals through LightGBM → FSI 0–100", "trained model, held-out validation"],
-            ["get_farmer_history", "structured memory across sessions (hashed phone key)", "SQLite — no raw PII"],
-            ["send_officer_alert", "WhatsApp alert with evidence when FSI critical", "Twilio"],
-            ["draft_pmfby_claim", "Marathi PMFBY letter filled with the actual evidence numbers", "LLM + FSI evidence"],
+            ["query_weather_signal", "30-day rainfall deficit vs 5-yr baseline", "Open-Meteo ERA5"],
+            ["query_mandi_prices", "median mandi price vs MSP", "Agmarknet (data.gov.in)"],
+            ["query_ndvi_signal", "satellite crop-health stress", "NASA MODIS MOD13Q1"],
+            ["compute_fsi", "fuse 4 signals via LightGBM → FSI 0–100", "trained model, held-out"],
+            ["get_farmer_history", "session memory (hashed phone key)", "SQLite — no raw PII"],
+            ["send_officer_alert", "WhatsApp alert with evidence", "Twilio"],
+            ["draft_pmfby_claim", "Marathi PMFBY letter from evidence", "LLM + FSI evidence"],
           ],
           [2340, 4212, 2808]),
-        spacer(60),
-        p("Each tool has one job (track slide 9: role-scoped agents); the agent's decision chain is fully traceable through logged tool calls; tools are auditable and swappable — another team could reuse this MCP server as-is."),
+        rich([{ text: "One job per tool (slide 9); every decision traceable through logged calls; tools are auditable and reusable as-is by another team.", size: 22 }], { before: 80 }),
 
         // ===== 4 METHODOLOGY =====
         h1("4.  Technical Methodology"),
         h2("4.1  Four signals → Financial Stress Index"),
         table(["Signal", "Source (live API)", "What it measures"],
           [
-            ["Drought probability", "Open-Meteo ERA5 (keyless)", "30-day rainfall vs same window averaged over previous 5 years"],
-            ["Mandi price deviation", "Agmarknet, data.gov.in", "% gap of median modal price below MSP (2025-26 CACP)"],
-            ["NDVI satellite index", "NASA MODIS MOD13Q1 via ORNL", "actual crop canopy health from space, 16-day composites"],
-            ["Repayment proximity", "district crop calendar", "nearness to the crop-loan due window — the coincidence amplifier"],
+            ["Drought probability", "Open-Meteo ERA5 (keyless)", "30-day rainfall vs 5-yr average"],
+            ["Mandi price deviation", "Agmarknet, data.gov.in", "% of median modal price below MSP"],
+            ["NDVI satellite index", "NASA MODIS MOD13Q1", "crop canopy health from space"],
+            ["Repayment proximity", "district crop calendar", "nearness to loan-due window (amplifier)"],
           ],
           [2340, 2808, 4212]),
         spacer(60),
-        h2("4.2  The FSI model — and what its metrics do and do not mean"),
+        // signal-fusion diagram
+        flowRow([
+          new TableCell({ width: { size: 3000, type: WidthType.DXA }, verticalAlign: VerticalAlign.CENTER,
+            shading: { type: ShadingType.CLEAR, fill: LIGHT }, margins: { top: 70, bottom: 70, left: 90, right: 90 },
+            children: ["Drought", "Price gap vs MSP", "NDVI (satellite)", "Repayment proximity"].map((t, i) =>
+              new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: i === 3 ? 0 : 24 },
+                children: [new TextRun({ text: t, size: 17, color: GREEN, bold: true, font: "Calibri" })] })) }),
+          arrowCell(420),
+          flowBox("LightGBM", "gradient-boosted fusion", 2400, "DDEBDD", GREEN),
+          arrowCell(420),
+          flowBox("FSI 0–100", "> 75 = CRITICAL alert", 2760, HDRBG, "FFFFFF"),
+        ], [3000, 420, 2400, 420, 2760]),
+        spacer(80),
+        h2("4.2  The FSI model — what its metrics do and do not mean"),
         rich([
-          { text: "A LightGBM regressor maps the four signals plus month/crop/region context to FSI 0–100. It is trained on our custom 13,644-row synthetic-but-grounded dataset (Section 6) and evaluated on " },
-          { text: "held-out talukas the model has never seen", bold: true },
-          { text: "." },
+          { text: "A LightGBM regressor maps the four signals plus month/crop/region to FSI 0–100, trained on our 13,644-row synthetic dataset (§6) and evaluated on " },
+          { text: "held-out talukas the model has never seen", bold: true }, { text: "." },
         ]),
         table(["Consistency check on synthetic data (held-out talukas)", "Value"],
-          [
-            ["Mean absolute error (0–100 scale)", "3.75"],
-            ["R²", "0.942"],
-            ["Critical-alert recall (FSI > 75)", "0.78"],
-            ["Critical-alert precision", "0.83"],
-          ],
+          [["Mean absolute error (0–100 scale)", "3.75"], ["R²", "0.942"],
+           ["Critical-alert recall (FSI > 75)", "0.78"], ["Critical-alert precision", "0.83"]],
           [5148, 4212]),
         spacer(60),
         rich([
-          { text: "What these numbers mean — stated plainly: ", bold: true, color: RED },
-          { text: "the synthetic labels are generated by our own domain-logic formula (weighted signals + coincidence interactions + noise), so on this data the model is recovering a function we designed. These metrics therefore measure " },
-          { text: "internal consistency of the pipeline — that the model faithfully encodes the domain logic and generalizes it across unseen talukas — not real-world predictive power. ", bold: true },
-          { text: "Real validation is exactly what the pilot in Section 8 is designed to produce: alert precision measured against officer-verified ground truth over one monsoon season. We consider it a feature of this submission that the ML claim is scoped honestly." },
+          { text: "What these numbers mean, plainly: ", bold: true, color: RED },
+          { text: "our synthetic labels come from a domain-logic formula, so the model is recovering a function we designed. The metrics measure " },
+          { text: "internal pipeline consistency — not real-world predictive power. ", bold: true },
+          { text: "Real validation is the §8 pilot: alert precision vs officer-verified ground truth over one season. Scoping the ML claim honestly is deliberate." },
         ]),
-        p("The label formula itself encodes the core domain insight: distress spikes when crop failure coincides with the loan-repayment deadline — interaction terms (drought × repayment, price × repayment) amplify the base signal, mirroring the documented Oct–Jan clustering of farmer suicides."),
         rich([
-          { text: "Why FSI > 75 as the critical threshold? ", bold: true },
-          { text: "It is a tunable operating point, not a discovered truth: 75 balances alert recall (0.78) against precision (0.83) on the synthetic distribution, i.e. roughly one false alert per four raised. In deployment the threshold is calibrated per district against officer response capacity during the pilot." },
+          { text: "Threshold FSI > 75 ", bold: true },
+          { text: "is a tunable operating point (recall 0.78 / precision 0.83 ≈ one false alert per four), calibrated per district against officer capacity in the pilot. The label's interaction terms (drought × repayment, price × repayment) encode the core insight: distress spikes when crop failure meets the loan deadline — the documented Oct–Jan clustering." },
         ]),
-        h2("4.3  Context engineering (track slide 8, all six elements)"),
+        h2("4.3  Context engineering (track slide 8 — all six elements)"),
         table(["Track requirement", "KisaanRaksha implementation"],
           [
-            ["Tool-grounded reasoning", "agent must call MCP tools for every fact; zero bare LLM answers"],
-            ["Structured memory", "SQLite farmer history: district, crop, past FSI, claims — recalled every turn"],
-            ["Localization-aware context", "Marathi-first replies; Hindi/English auto-detected and matched; MSP in ₹/quintal; correct Devanagari district spellings pinned"],
-            ["Retrieval-augmented grounding", "crop calendar, MSP tables, district registry injected as curated context"],
-            ["Guardrails & validation", "FSI thresholds decide alerts (not the LLM); simulation mode always labeled; helpline number in critical replies; no promises of money"],
-            ["Multi-step planning", "plan → signals → FSI → alert decision → claim draft, state carried across steps"],
+            ["Tool-grounded reasoning", "agent calls MCP tools for every fact; zero bare answers"],
+            ["Structured memory", "SQLite history: district, crop, past FSI, claims — recalled each turn"],
+            ["Localization-aware", "Marathi-first; Hindi/English auto-matched; ₹/quintal; Devanagari spellings pinned"],
+            ["Retrieval grounding", "crop calendar, MSP tables, district registry as curated context"],
+            ["Guardrails", "FSI thresholds decide alerts (not the LLM); SIMULATION always labeled; helpline in critical replies"],
+            ["Multi-step planning", "plan → signals → FSI → alert → claim, state carried across steps"],
           ],
           [3276, 6084]),
 
         // ===== 5 RESPONSIBLE AI =====
         h1("5.  Responsible AI — §8.3 Compliance & Bias Audit"),
-        h2("5.1  Fairlearn bias audit (mandatory for vulnerable-population models)"),
-        p("The FSI drives officer attention toward or away from farmers, so we audit the critical-alert decision (FSI > 75) on held-out talukas. The harm metric — and the one we gate on — is the false-negative rate: a missed alert is a missed farmer."),
+        p("The FSI directs officer attention, so we audit the critical-alert decision (FSI > 75) on held-out talukas. The gated harm metric is the false-negative rate — a missed alert is a missed farmer."),
         table(["Group", "Alert rate", "False-negative rate", "MAE"],
-          [
-            ["Vidarbha", "0.064", "0.205", "3.74"],
-            ["Marathwada", "0.077", "0.229", "3.75"],
-            ["Gap across regions", "0.013", "0.024", "0.015"],
-            ["Gap across crops (cotton/soy/tur)", "0.045", "0.074", "0.23"],
-          ],
+          [["Vidarbha", "0.064", "0.205", "3.74"], ["Marathwada", "0.077", "0.229", "3.75"],
+           ["Gap across regions", "0.013", "0.024", "0.015"], ["Gap across crops", "0.045", "0.074", "0.23"]],
           [2808, 2106, 2680, 1766]),
         spacer(60),
         table(["Fairness gate", "Threshold", "Observed", "Result"],
-          [
-            ["FNR gap — region", "< 0.10", "0.024", "PASS"],
-            ["FNR gap — crop", "< 0.10", "0.074", "PASS"],
-            ["MAE gap — region", "< 2.0 points", "0.015", "PASS"],
-            ["MAE gap — crop", "< 2.0 points", "0.23", "PASS"],
-            ["Alert-rate gap", "monitored, not gated", "0.013 / 0.045", "—"],
-          ],
+          [["FNR gap — region", "< 0.10", "0.024", "PASS"], ["FNR gap — crop", "< 0.10", "0.074", "PASS"],
+           ["MAE gap — region", "< 2.0 pts", "0.015", "PASS"], ["MAE gap — crop", "< 2.0 pts", "0.23", "PASS"],
+           ["Alert-rate gap", "monitored, not gated", "0.013 / 0.045", "—"]],
           [3276, 2340, 2106, 1638]),
-        spacer(60),
-        p("Gates apply per metric: false-negative-rate gaps are gated at 0.10; MAE gaps (0–100 scale) at 2.0 points. The alert-rate difference is monitored but deliberately not gated — Marathwada's higher alert rate reflects its genuinely higher drought propensity, and equalizing it would suppress true alerts there. Full report: model/fairlearn_report.md, regenerated by model/fairlearn_report.py on every retrain."),
-        h2("5.2  Data ethics"),
-        bullet("No real farmer PII anywhere: training data is synthetic; live farmers are keyed by hashed WhatsApp numbers."),
-        bullet("Every data source cited in README: Open-Meteo (CC-BY 4.0), Agmarknet/data.gov.in, NASA MODIS, CACP MSP, public GeoJSON boundaries."),
-        bullet("Demo crisis scenario is always labeled 'SIMULATION' in every message and dashboard view — no fabricated live claims."),
-        h2("5.3  Honest limitations"),
-        bullet("As stated in §4.2: the model's metrics measure internal consistency on synthetic data whose labels we generated — they are not evidence of real-world predictive power. The pilot (§8) exists precisely to produce that evidence before any resource-allocation use."),
-        bullet("District-level signals mask farm-level variance; NDVI at district HQ is a proxy, not a per-field measurement."),
-        bullet("The model flags financial stress patterns — it is an officer-attention tool, never an automated eligibility or denial decision."),
-        bullet("Mandi price coverage is thin off-season; the pipeline discloses its fallback scope (district → state → national → seasonal baseline) in every response."),
+        rich([{ text: "FNR gaps are gated at 0.10, MAE gaps at 2.0 points. Alert-rate is monitored not gated — Marathwada's higher rate reflects genuinely higher drought risk; equalizing it would suppress true alerts. Full report: model/fairlearn_report.md.", size: 22 }], { before: 80 }),
+        h2("5.2  Data ethics & honest limitations"),
+        bullet("No real farmer PII: training data is synthetic; live farmers keyed by hashed WhatsApp numbers."),
+        bullet("Every source cited (README): Open-Meteo CC-BY 4.0, Agmarknet, NASA MODIS, CACP MSP, public GeoJSON."),
+        bullet("The demo crisis is always labeled 'SIMULATION' — no fabricated live claims."),
+        bullet("Metrics show pipeline consistency on synthetic data, not real-world prediction (see §4.2, §8 pilot)."),
+        bullet("District-level signals mask farm variance; the FSI is an officer-attention tool, never an automated eligibility or denial decision."),
 
         // ===== 6 DATASET =====
         h1("6.  Custom Dataset — Flagged for IEEE Dataport"),
         rich([
           { text: "maharashtra_ag_stress_dataset.csv", bold: true },
-          { text: " — 13,644 rows of (district × taluka × crop × year × month) panels for 16 Vidarbha/Marathwada districts, with the four stress signals and a documented financial-stress label. Fully synthetic (zero PII), fully reproducible (seeded generator script), and grounded in real distributions: IMD regional drought propensity, observed 2024–26 Agmarknet-vs-MSP gaps, MODIS kharif NDVI seasonality, and real CACP MSP values." },
+          { text: " — 13,644 (district × taluka × crop × year × month) rows for 16 districts, with the four signals and a documented stress label. Fully synthetic (zero PII), reproducible from a seeded script, and grounded in real distributions: IMD drought propensity, 2024–26 Agmarknet-vs-MSP gaps, MODIS kharif NDVI seasonality, real CACP MSP. Flagged for IEEE Dataport (slide 11); methodology in dataset/README.md." },
         ]),
-        p("Per the bonus pathway (onboarding slide 11), we flag this dataset for organizer-supported publication on IEEE Dataport. Generation methodology: dataset/README.md."),
 
         // ===== 7 IMPACT =====
         h1("7.  Impact — Accessibility & Scalability"),
-        h2("7.1  Accessibility (works within real Indian constraints)"),
-        bullet("Zero new app, zero literacy requirement: WhatsApp voice in the farmer's own language (Marathi-first; Hindi/English auto-matched)."),
-        bullet("Works on any phone that runs WhatsApp; the farmer-side cost is one voice note."),
-        bullet("Offline-first server design: every signal falls back to last-known cached values, so the dashboard and FSI survive connectivity loss (track slide 13)."),
-        bullet("Evidence-based problem: 2,706 deaths (2024, Vidarbha+Marathwada), 42% deemed ineligible for aid — cited state data, not a hypothetical persona."),
-        h2("7.2  Scalability (1 taluka → state footprint)"),
-        bullet("All data sources are pan-India government/public APIs — adding a district is one JSON entry, no new data engineering."),
-        bullet("Cost-aware: free-tier LLM inference, keyless weather/satellite APIs, SQLite → the marginal cost per farmer conversation is fractions of a rupee."),
-        bullet("Same four-signal pattern generalizes to any rain-fed crop belt (Telangana, Karnataka, Bundelkhand) by swapping the district registry and crop calendar."),
+        bulletRich([{ text: "Accessibility: ", bold: true, color: MIDGREEN }, { text: "WhatsApp voice in the farmer's own language — no app, no literacy requirement, any phone; offline-first server with cached fallback for low connectivity." }]),
+        bulletRich([{ text: "Scalability: ", bold: true, color: MIDGREEN }, { text: "all sources are pan-India public APIs; adding a district is one JSON entry; free-tier inference means fractions of a rupee per conversation; the four-signal pattern generalizes to any rain-fed belt." }]),
+        spacer(60),
         table(["Deployment metric", "Current build", "State scale-up path"],
           [
             ["Districts monitored", "16 (Vidarbha + Marathwada)", "36 (all Maharashtra) — config only"],
-            ["Farmers reachable", "every WhatsApp user in covered districts", "WhatsApp Business API + Krishi Vibhag lists"],
-            ["Claim assistance", "PMFBY letter auto-drafted in Marathi", "direct PMFBY portal API integration"],
-            ["Officer surface", "WhatsApp alerts + Streamlit heatmap", "integration into existing Mahavedh/Krishi dashboards"],
+            ["Farmers reachable", "every WhatsApp user in coverage", "WhatsApp Business API + Krishi Vibhag lists"],
+            ["Claim assistance", "PMFBY letter auto-drafted (Marathi)", "direct PMFBY portal API"],
+            ["Officer surface", "WhatsApp alerts + Streamlit heatmap", "integrate into Mahavedh / Krishi dashboards"],
           ],
           [2808, 3276, 3276]),
 
         // ===== 8 DEPLOYMENT =====
         h1("8.  Deployment Pathway & Sustainability"),
-        p("Designed for month two, not hour twelve (track slide 13):", { bold: true }),
-        bullet("Ownership path: handoff to Krishi Vibhag (district agriculture offices) or an NGO operator; the officer alert flow mirrors their existing duty-roster practice."),
-        bullet("Low operating cost: one lightweight model file (LightGBM, <1 MB), free-tier inference, no GPU anywhere in the serving path."),
-        bullet("Maintainable by someone else: modular repo, one-command dataset regeneration and retraining, every data source documented, bias audit regenerates automatically."),
-        bullet("Pilot proposal: one monsoon season (Jun–Jan) across 3 talukas in Amravati district, measuring alert precision against officer-verified ground truth and PMFBY claim completion rates."),
+        bullet("Ownership: handoff to Krishi Vibhag (district offices) or an NGO — the alert flow mirrors their duty-roster practice."),
+        bullet("Low cost: one <1 MB LightGBM file, free-tier inference, no GPU in the serving path."),
+        bullet("Maintainable: modular repo, one-command dataset regen + retrain, bias audit regenerates automatically."),
+        bullet("Pilot: one monsoon season across 3 Amravati talukas, measuring alert precision vs officer-verified ground truth and PMFBY completion rates."),
 
         // ===== 9 DEMO =====
-        h1("9.  Live Demo (verified on a real phone)"),
-        p("The full loop below has already been executed end-to-end on a physical phone via the Twilio WhatsApp sandbox:"),
-        bullet("1.  Farmer sends a Marathi voice note / text on WhatsApp."),
-        bullet("2.  ASR transcribes the note. Production path: Whisper large-v3 (hosted, free tier) — this is what runs in the demo. AI4Bharat IndicConformer is implemented as a configurable offline backend (ASR_BACKEND=ai4bharat) for the data-sovereign deployment described in §8; it is not the demo path."),
-        bullet("3.  Agent chains MCP tools: weather → mandi → NDVI → compute_fsi."),
-        bullet("4.  Calm day (live data, 5 July 2026): rainfall deficit 10.6%, NDVI 0.331, FSI 20.9 LOW → honest all-clear reply in Marathi, no alert. The system does not cry wolf."),
-        bullet("5.  Crisis scenario — a clearly labeled simulation replaying the Oct–Nov 2024 stress pattern (drought signal 0.70, price 18% below MSP): FSI 87.9 CRITICAL → officer WhatsApp alert + auto-drafted PMFBY claim letter in Marathi delivered back to the farmer. Every simulated message carries a visible SIMULATION tag; the deliberate contrast between step 4's real numbers and step 5's simulated ones is part of the demo."),
-        bullet("6.  Streamlit dashboard shows the Maharashtra FSI choropleth updating from the same cache."),
-        spacer(60),
+        h1("9.  Live Demo — Verified End-to-End on a Real Phone"),
         rich([
-          { text: "Officer alert as delivered on WhatsApp:  ", bold: true },
-          { text: "\"⚠ KisaanRaksha Alert: Amravati (Vidarbha) · FSI = 87.9 (CRITICAL) · Crop: cotton · Rainfall deficit: 57.4% · Market price ₹4,200/qtl (18% below MSP ₹7,710) · NDVI 0.39 · Loan-repayment window: ACTIVE · Action: proactive outreach + PMFBY survey recommended · [SIMULATION — replays Oct-Nov 2024 Vidarbha stress pattern, not live data]\"", italics: true, color: GRAY },
+          { text: "Executed on a physical phone via the Twilio WhatsApp sandbox. The farmer can send a " },
+          { text: "Marathi voice note or a text message", bold: true },
+          { text: " — voice is the primary, literacy-free path; Whisper transcribes it either way. The agent then chains weather → mandi → NDVI → compute_fsi and branches on the score:" },
         ]),
-        p("Farmer-count integration (how many farmers are in the repayment window per taluka) requires the Krishi Vibhag crop-loan roster and is scoped as a pilot deliverable — the alert states only what the system has actually derived."),
+        flowRow([
+          flowBox("Marathi voice", "WhatsApp note"), arrowCell(),
+          flowBox("Whisper ASR", "→ text"), arrowCell(),
+          flowBox("Agent + MCP", "4 signals → FSI"), arrowCell(),
+          flowBox("FSI 0–100", "threshold 75"),
+        ], [1740, 340, 1560, 340, 1860, 340, 2100]),
+        spacer(40),
+        flowRow([
+          flowBox("FSI < 75 → LOW", "honest all-clear reply, no alert", 4560, "DDEBDD", GREEN),
+          new TableCell({ width: { size: 240, type: WidthType.DXA }, children: [new Paragraph({ children: [] })] }),
+          flowBox("FSI > 75 → CRITICAL", "officer alert + Marathi PMFBY claim PDF", 4560, "FCE4D6", AMBER),
+        ], [4560, 240, 4560]),
+        spacer(120),
+
+        rich([{ text: "Crisis path (labeled simulation).", bold: true, color: AMBER, size: 23 }]),
+        p("A demo message replaying the Oct–Nov 2024 stress pattern raises FSI to 87.9 CRITICAL. The officer receives a WhatsApp alert with the full evidence; the farmer receives Marathi guidance and an auto-drafted PMFBY claim as a PDF. Every simulated message carries a visible SIMULATION tag.", { after: 80 }),
+        screenshot(CRIT_IMG),
+        caption("Fig. 1 — Crisis simulation: officer alert (FSI 87.9 CRITICAL, evidence + farmer callback), Marathi guidance with the Kisan helpline, and the auto-drafted PMFBY claim delivered as a PDF."),
+
+        rich([{ text: "Calm path (live data).", bold: true, color: MIDGREEN, size: 23 }]),
+        p("On a real, calm day the same pipeline returns FSI 20.9 LOW and replies with an honest all-clear — no alert, no claim. The contrast between the two is the point: the system does not cry wolf.", { after: 80 }),
+        screenshot(CALM_IMG),
+        caption("Fig. 2 — Calm day on live data: rainfall deficit 10.6%, NDVI 0.77, FSI 20.9 LOW → all-clear Marathi reply, no false alarm."),
 
         // ===== 10 TEAM =====
         h1("10.  Team, Repository & Declaration"),
@@ -372,14 +388,14 @@ const doc = new Document({
           [
             ["Team", "Sahil Karande · Pranav Shripannavar — 2 members"],
             ["Repository", "github.com/sahilkarande0918-cmd/Kisan-Raksha-project"],
-            ["Stack", "Python · FastMCP · FastAPI · LightGBM · Fairlearn · ASR: Whisper large-v3 in production demo, AI4Bharat IndicConformer as implemented offline backend · Twilio WhatsApp · Streamlit · SQLite"],
+            ["Stack", "Python · FastMCP · FastAPI · LightGBM · Fairlearn · Whisper/AI4Bharat ASR · Twilio WhatsApp · Streamlit · SQLite"],
             ["Custom dataset", "dataset/maharashtra_ag_stress_dataset.csv — flagged for IEEE Dataport"],
             ["Bias audit", "model/fairlearn_report.md — all gates pass"],
-            ["Declaration", "All data sources public or synthetic; no real personal data collected; per Code of Conduct §8.3."],
+            ["Declaration", "All data public or synthetic; no real personal data collected; per Code of Conduct §8.3."],
           ],
           [2340, 7020]),
         spacer(),
-        new Paragraph({ alignment: AlignmentType.CENTER, spacing: { before: 300 },
+        new Paragraph({ alignment: AlignmentType.CENTER, spacing: { before: 260 },
           children: [new TextRun({ text: "Technology must serve humanity — KisaanRaksha points it at the farmer the system forgot.", italics: true, size: 24, color: GREEN, font: "Calibri" })] }),
       ],
     },
@@ -388,5 +404,8 @@ const doc = new Document({
 
 Packer.toBuffer(doc).then(buf => {
   fs.writeFileSync("docs/KisaanRaksha_Round1_Solution.docx", buf);
+  const have = fs.existsSync(CRIT_IMG) && fs.existsSync(CALM_IMG);
   console.log("written docs/KisaanRaksha_Round1_Solution.docx", buf.length, "bytes");
+  console.log("screenshots embedded:", have ? "YES (both)" :
+    `PENDING — save ${CRIT_IMG} and ${CALM_IMG}`);
 });
