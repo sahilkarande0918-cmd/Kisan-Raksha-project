@@ -31,3 +31,9 @@ ngrok.exe
 node_modules/
 package-lock.json
 package.json
+
+# pptx build working dir (final deck lives at repo root)
+deck_build/
+
+# local Claude Code config (not for the repo)
+.claude/
